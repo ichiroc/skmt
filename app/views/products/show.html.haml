@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @product.title
+%p
+  %b Description:
+  = @product.description
+%p
+  %b Price:
+  = @product.price
+%p
+  %b Hidden:
+  = @product.hidden
+%p
+  %b Sort order:
+  = @product.sort_order
+%p
+  %b Image:
+  = @product.image
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path
