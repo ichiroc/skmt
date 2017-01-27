@@ -1,3 +1,4 @@
+# coding: utf-8
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -79,3 +80,6 @@ end
 
 gem 'therubyracer', "~> 0.12.3"
 gem 'less-rails'
+
+# 警告抑止のため
+gem "sprockets", '3.6.3'
