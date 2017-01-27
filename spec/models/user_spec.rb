@@ -1,5 +1,9 @@
+# coding: utf-8
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it '有効なファクトリを持つこと' do
+    expect(build(:user)).to be_valid
+  end
 end
