@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :product do
-    title "MyString"
-    description "MyText"
-    price 1
-    hidden 1
-    sort_order 1
-    image "MyString"
+    title { Faker::Commerce.product_name }
+    description { Faker::Lorem.paragraph }
+    price { Faker::Commerce.price }
+    hidden nil
+    sort_order { Faker::Number.positive }
+    image nil
   end
 end
