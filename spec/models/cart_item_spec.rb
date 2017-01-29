@@ -1,4 +1,5 @@
 # coding: utf-8
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe CartItem, type: :model do
@@ -10,6 +11,8 @@ RSpec.describe CartItem, type: :model do
     expect(cart_item.errors[:quantity]).to include 'must be greater than 0'
   end
 
-  it '商品の合計金額を出せること'
-
+  it '商品の合計金額を出せること' do
+    cart_item.quantity = 10
+    expect(cart_item.total).to eq cart_item.product.price * 10
+  end
 end
