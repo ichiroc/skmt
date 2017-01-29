@@ -7,8 +7,6 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
-  it '画像を保存できること'
-  it '画像以外のファイルは保存できないこと'
   it 'カートを持っていること'
 
   context 'Admin の場合' do
