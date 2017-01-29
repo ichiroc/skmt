@@ -77,6 +77,7 @@ group :development, :test do
   gem 'pry-doc', "~> 0.10.0"
   gem 'rspec-rails', "~> 3.5.2"
   gem 'selenium-webdriver', "~> 3.0.5"
+  gem 'terminal-notifier-guard'
 end
 
 gem 'therubyracer', "~> 0.12.3"
