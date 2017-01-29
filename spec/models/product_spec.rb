@@ -8,15 +8,18 @@ RSpec.describe Product, type: :model do
   end
   it '0円の場合は無効であること' do
     product.price = 0
-    expect(product).not_to be_valid
+    product.valid?
+    expect(product.errors[:price]).to include %(must be greater than 0)
   end
 
   it '値段は必須であること' do
     product.price = nil
-    expect(product).not_to be_valid
+    product.valid?
+    expect(product.errors[:price]).to include %(can't be blank)
   end
   it '名前は必須であること' do
     product.title = nil
-    expect(product).not_to be_valid
+    product.valid?
+    expect(product.errors[:title]).to include %(can't be blank)
   end
 end
