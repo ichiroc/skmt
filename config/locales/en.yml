@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      content_type_whitelist_error: "must be a type of images."
+      extension_whitelist_error: "extension must be a one of jpg, jpeg, png, gif"

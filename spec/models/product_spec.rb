@@ -1,4 +1,5 @@
 # coding: utf-8
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
@@ -22,5 +23,11 @@ RSpec.describe Product, type: :model do
     product.title = nil
     product.valid?
     expect(product.errors[:title]).to include %(can't be blank)
+  end
+
+  it '拡張子が画像の拡張子じゃないときはエラーになること' do
+    product.image = File.new "#{Rails.root}/spec/images/dummy.txt"
+    product.valid?
+    expect(product.errors[:image]).to include 'extension must be a one of jpg, jpeg, png, gif'
   end
 end
