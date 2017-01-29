@@ -3,9 +3,9 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   subject(:product) { build :product }
-  it '有効なファクトリを持つこと' do
-    expect(build :product).to be_valid
-  end
+
+  it { is_expected.to be_valid }
+
   it '0円の場合は無効であること' do
     product.price = 0
     product.valid?
@@ -17,6 +17,7 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:price]).to include %(can't be blank)
   end
+
   it '名前は必須であること' do
     product.title = nil
     product.valid?
