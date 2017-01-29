@@ -15,4 +15,8 @@
 class Cart < ApplicationRecord
   belongs_to :user
   has_many :items, class_name: CartItem
+
+  def total
+    items.map(&:total).inject(:+)
+  end
 end

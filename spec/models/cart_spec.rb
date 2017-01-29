@@ -19,5 +19,16 @@ RSpec.describe Cart, type: :model do
     }.to change(cart.items, :count).by(+1)
   end
 
-  it 'カート内の商品の合計金額を計算できること'
+  it 'カート内の商品の合計金額を計算できること' do
+    items = 10.times.map{ build :cart_item }
+    cart.items = items
+    expect(cart.total).to eq items.map(&:total).inject(:+)
+    # 念のため
+    cart.items = []
+    i1 = build :cart_item
+    i2 = build :cart_item
+    cart.items << i1
+    cart.items << i2
+    expect(cart.total).to eq i1.total + i2.total
+  end
 end
