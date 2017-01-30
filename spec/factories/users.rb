@@ -9,5 +9,9 @@ FactoryGirl.define do
     before :build do |user|
       user.skip_confirmation!
     end
+
+    after :build do |user|
+      user.cart = build :cart
+    end
   end
 end
