@@ -59,6 +59,7 @@ gem 'rolify', "~> 5.1.0"
 gem 'pundit', "~> 1.1.0"
 gem 'haml-rails', "~> 0.9.0"
 gem 'kaminari', "~> 1.0.1"
+gem 'mini_magick'
 gem 'simple_form', "~> 3.4.0"
 gem 'twitter-bootstrap-rails', "~> 3.2.2"
 group :development, :test do

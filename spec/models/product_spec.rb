@@ -48,4 +48,31 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:image]).to include 'extension must be a one of jpg, jpeg, png, gif'
   end
+
+
+  describe '画像のリサイズ' do
+    subject(:image_file) do
+      product = create :product, image: File.new(image_path)
+       MiniMagick::Image.open product.image.path
+    end
+    context '300x300以下のサイズ(300x300)をアップロードした場合' do
+      let(:image_path){ "#{Rails.root}/spec/images/300x300.png" }
+      it 'リサイズしないこと' do
+        expect([image_file.width, image_file.height]).to eq [300, 300]
+      end
+    end
+
+    context '幅が300より大きいサイズ(301x300)をアップロードした場合' do
+      let(:image_path){ "#{Rails.root}/spec/images/301x300.png" }
+      it '幅が300にリサイズされること' do
+        expect(image_file.width).to eq 300
+      end
+    end
+    context '縦が300より大きいサイズ(300x301)をアップロードした場合' do
+      let(:image_path){ "#{Rails.root}/spec/images/300x301.png" }
+      it '縦が300にリサイズされること' do
+        expect(image_file.height).to eq 300
+      end
+    end
+  end
 end

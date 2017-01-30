@@ -6,6 +6,5 @@ FactoryGirl.define do
     price { Faker::Commerce.price 1..10000 }
     hidden nil
     sort_order { Faker::Number.positive }
-    image File.new "#{Rails.root}/spec/images/dummy.jpg"
   end
 end

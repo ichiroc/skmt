@@ -2,7 +2,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -23,16 +23,19 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process scale: [200, 300]
+  process resize_to_fit: [300, 300], if: :too_big?
+
+  def too_big?(file)
+    f = MiniMagick::Image.open file.path
+    f.width > 300 or f.height  > 300
+  end
+
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
