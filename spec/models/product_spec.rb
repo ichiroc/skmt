@@ -54,7 +54,27 @@ RSpec.describe Product, type: :model do
     subject(:image_file) do
       product = create :product, image: File.new(image_path)
        MiniMagick::Image.open product.image.path
+  describe '画像のファイルサイズ' do
+    let(:product) { build :product, image: File.new(file_path) }
+    before :each do
+      product.valid?
     end
+    context 'ファイルサイズが10MBを超えていると' do
+      let(:file_path) { "#{Rails.root}/spec/images/over10MB.png" }
+      it 'エラーになること' do
+        expect(product.errors[:image]).to include 'file size must be under 10MB'
+      end
+    end
+
+    skip context 'ファイルサイズが10MB以下なら' do
+      skip '画像ファイルじゃないと MiniMagick でエラーになるので10MB近くの画像が手に入るまで処理をスキップする'
+      let(:file_path){ "#{Rails.root}/spec/images/under10MB.png" }
+      it 'アップロードできること' do
+        expect(product.errors[:image]).not_to include 'file size must be under 10MB'
+      end
+    end
+  end
+
     context '300x300以下のサイズ(300x300)をアップロードした場合' do
       let(:image_path){ "#{Rails.root}/spec/images/300x300.png" }
       it 'リサイズしないこと' do

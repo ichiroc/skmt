@@ -24,3 +24,4 @@ en:
     messages:
       content_type_whitelist_error: "must be a type of images."
       extension_whitelist_error: "extension must be a one of jpg, jpeg, png, gif"
+      max_size_error: "file size must be under 10MB"
