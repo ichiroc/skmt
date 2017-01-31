@@ -50,10 +50,6 @@ RSpec.describe Product, type: :model do
   end
 
 
-  describe '画像のリサイズ' do
-    subject(:image_file) do
-      product = create :product, image: File.new(image_path)
-       MiniMagick::Image.open product.image.path
   describe '画像のファイルサイズ' do
     let(:product) { build :product, image: File.new(file_path) }
     before :each do
@@ -75,6 +71,9 @@ RSpec.describe Product, type: :model do
     end
   end
 
+  describe '画像のリサイズ' do
+    let(:product) { create :product, image: File.new(image_path)}
+    let(:image_file) { MiniMagick::Image.open product.image.path }
     context '300x300以下のサイズ(300x300)をアップロードした場合' do
       let(:image_path){ "#{Rails.root}/spec/images/300x300.png" }
       it 'リサイズしないこと' do
