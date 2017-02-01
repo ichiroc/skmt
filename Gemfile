@@ -56,7 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 gem 'devise', "~> 4.2.0"
 gem 'rolify', "~> 5.1.0"
-gem 'pundit', "~> 1.1.0"
+gem 'pundit', github: 'elabs/pundit'
 gem 'haml-rails', "~> 0.9.0"
 gem 'kaminari', "~> 1.0.1"
 gem 'mini_magick'

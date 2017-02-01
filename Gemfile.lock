@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/elabs/pundit.git
+  revision: 8b2d6381037ffe6792d193a2a4442b58a961e9e2
+  specs:
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,8 +204,6 @@ GEM
       yard (~> 0.9)
     public_suffix (2.0.5)
     puma (3.6.2)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -268,7 +273,7 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sexp_processor (4.7.0)
+    sexp_processor (4.8.0)
     shellany (0.0.1)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
@@ -350,7 +355,7 @@ DEPENDENCIES
   pry-byebug (~> 3.4.2)
   pry-doc (~> 0.10.0)
   puma (~> 3.6.2)
-  pundit (~> 1.1.0)
+  pundit!
   rails (~> 5.0.1)
   rolify (~> 5.1.0)
   rspec-rails (~> 3.5.2)

@@ -1,15 +1,18 @@
 class ProductsController < ApplicationController
+  include Pundit
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = authorize Product.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    authorize @product
   end
 
   # GET /products/new
