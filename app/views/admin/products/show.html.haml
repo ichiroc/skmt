@@ -1,5 +1,23 @@
 %p#notice= notice
 
+%p
+  %b Name:
+  = @admin_product.name
+%p
+  %b Description:
+  = @admin_product.description
+%p
+  %b Price:
+  = @admin_product.price
+%p
+  %b Hidden:
+  = @admin_product.hidden
+%p
+  %b Sort order:
+  = @admin_product.sort_order
+%p
+  %b Image:
+  = image_tag @admin_product.image.url unless @admin_product.image.blank?
 
 = link_to 'Edit', edit_admin_product_path(@admin_product)
 \|
