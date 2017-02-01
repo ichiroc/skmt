@@ -6,10 +6,10 @@ RSpec.describe User, type: :model do
   subject(:user){ build :user }
   it { is_expected.to be_valid }
 
-  it 'カートを持っていること' do
+  it 'カートが自動的に生成されること' do
     user.cart = nil
     user.valid?
-    expect(user.errors[:cart]).to include 'must exist'
+    expect(user.cart).to be_a Cart
   end
 
   context 'Admin の場合' do

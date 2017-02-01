@@ -37,4 +37,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :cart, required: true
+  before_validation :build_cart, if: ->(u) { u.cart.blank? }
 end
