@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'products#index'
   resources :cart_items
-  resources :products
+  resources :products, only: [:show, :index]
   namespace :admin do
     resources :products
   end
