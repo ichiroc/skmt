@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar.global-nav a:visited{
+    color: white;
+}
