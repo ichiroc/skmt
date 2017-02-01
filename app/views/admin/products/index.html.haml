@@ -1,18 +1,22 @@
-%h1 Listing admin_products
+%h1 商品管理
 
-%table
+%table.table
   %thead
     %tr
+      %th 名前
+      %th 説明
       %th
       %th
       %th
 
   %tbody
-    - @admin_products.each do |admin_product|
+    - @admin_products.each do |product|
       %tr
-        %td= link_to 'Show', admin_product
-        %td= link_to 'Edit', edit_admin_product_path(admin_product)
-        %td= link_to 'Destroy', admin_product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= product.name
+        %td= product.description
+        %td= link_to 'Show', admin_product_path(product)
+        %td= link_to 'Edit', edit_admin_product_path(product)
+        %td= link_to 'Destroy', admin_product_path(product), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
