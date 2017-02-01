@@ -31,7 +31,7 @@ RSpec.describe Product, type: :model do
     it 'マイナスの場合は無効であること' do
       product.sort_order = -1
       product.valid?
-      expect(product.errors[:sort_order]).to include %(must be greater than 0)
+      expect(product.errors[:sort_order]).to include %(must be greater than or equal to 0)
     end
 
     it 'デフォルトは表示順通りの順番が返ってくること'
