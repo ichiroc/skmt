@@ -38,9 +38,9 @@ RSpec.describe Product, type: :model do
   end
 
   it '名前は必須であること' do
-    product.title = nil
+    product.name = nil
     product.valid?
-    expect(product.errors[:title]).to include %(can't be blank)
+    expect(product.errors[:name]).to include %(can't be blank)
   end
 
   it '拡張子が画像の拡張子じゃないときはエラーになること' do
@@ -48,7 +48,6 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:image]).to include 'extension must be a one of jpg, jpeg, png, gif'
   end
-
 
   describe '画像のファイルサイズ' do
     let(:product) { build :product, image: File.new(file_path) }
@@ -64,7 +63,7 @@ RSpec.describe Product, type: :model do
 
     skip context 'ファイルサイズが10MB以下なら' do
       skip '画像ファイルじゃないと MiniMagick でエラーになるので10MB近くの画像が手に入るまで処理をスキップする'
-      let(:file_path){ "#{Rails.root}/spec/images/under10MB.png" }
+      let(:file_path) { "#{Rails.root}/spec/images/under10MB.png" }
       it 'アップロードできること' do
         expect(product.errors[:image]).not_to include 'file size must be under 10MB'
       end
@@ -72,23 +71,23 @@ RSpec.describe Product, type: :model do
   end
 
   describe '画像のリサイズ' do
-    let(:product) { create :product, image: File.new(image_path)}
+    let(:product) { create :product, image: File.new(image_path) }
     let(:image_file) { MiniMagick::Image.open product.image.path }
     context '300x300以下のサイズ(300x300)をアップロードした場合' do
-      let(:image_path){ "#{Rails.root}/spec/images/300x300.png" }
+      let(:image_path) { "#{Rails.root}/spec/images/300x300.png" }
       it 'リサイズしないこと' do
         expect([image_file.width, image_file.height]).to eq [300, 300]
       end
     end
 
     context '幅が300より大きいサイズ(301x300)をアップロードした場合' do
-      let(:image_path){ "#{Rails.root}/spec/images/301x300.png" }
+      let(:image_path) { "#{Rails.root}/spec/images/301x300.png" }
       it '幅が300にリサイズされること' do
         expect(image_file.width).to eq 300
       end
     end
     context '縦が300より大きいサイズ(300x301)をアップロードした場合' do
-      let(:image_path){ "#{Rails.root}/spec/images/300x301.png" }
+      let(:image_path) { "#{Rails.root}/spec/images/300x301.png" }
       it '縦が300にリサイズされること' do
         expect(image_file.height).to eq 300
       end

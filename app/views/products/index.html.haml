@@ -3,7 +3,7 @@
 %table
   %thead
     %tr
-      %th Title
+      %th Name
       %th Description
       %th Price
       %th Hidden
@@ -16,7 +16,7 @@
   %tbody
     - @products.each do |product|
       %tr
-        %td= product.title
+        %td= product.name
         %td= product.description
         %td= product.price
         %td= product.hidden
