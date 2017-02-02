@@ -13,5 +13,14 @@ FactoryGirl.define do
     after :build do |user|
       user.cart = build :cart
     end
+
+    factory :admin do
+      email 'admin@admin'
+      password 'password'
+      is_admin '1'
+      after :build do |admin|
+        admin.skip_confirmation!
+      end
+    end
   end
 end
