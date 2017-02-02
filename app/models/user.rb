@@ -41,6 +41,10 @@ class User < ApplicationRecord
   before_validation :build_cart, if: ->(u) { u.cart.blank? }
 
   def is_admin= flag
-    add_role :admin unless flag.blank?
+    if flag == '1'
+      add_role :admin
+    else
+      remove_role :admin
+    end
   end
 end
