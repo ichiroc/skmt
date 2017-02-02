@@ -28,7 +28,6 @@
         .navbar-brand= link_to 'さくらマーケット', root_path
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if user_signed_in?
-            = render 'admin_menu' if current_user.is_admin?
             .navbar-text.navbar-right= link_to 'ログアウト', destroy_user_session_path, method: :delete
           - else
             .navbar-text.navbar-right= link_to 'ログイン', new_user_session_path
@@ -36,12 +35,8 @@
       .row
         .col-lg-3
           .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+            %h3= current_user.name if user_signed_in?
+            = render 'admin_menu' if user_signed_in? and current_user.is_admin?
         .col-lg-9
           = bootstrap_flash
           = yield

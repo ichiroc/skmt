@@ -1,2 +1,4 @@
-- if current_user.is_admin?
-  .navbar-text= link_to '商品管理', admin_products_path
+%ul.nav.nav-list
+  %li.nav-header 管理者メニュー
+  %li= link_to '商品管理', admin_products_path
+  %li= link_to 'ユーザー管理', admin_users_path
