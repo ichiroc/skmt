@@ -39,4 +39,8 @@ class User < ApplicationRecord
 
   has_one :cart, required: true
   before_validation :build_cart, if: ->(u) { u.cart.blank? }
+
+  def is_admin= flag
+    add_role :admin unless flag.blank?
+  end
 end

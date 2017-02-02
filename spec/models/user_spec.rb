@@ -12,7 +12,16 @@ RSpec.describe User, type: :model do
     expect(user.cart).to be_a Cart
   end
 
+  it '通常作成されるユーザーは admin でないこと' do
+    expect(user.is_admin?).to be false
+  end
+
   context 'Admin の場合' do
+    it 'is_admin= non-nil でadminロールを設定できること' do
+      user.is_admin = true
+      expect(user.is_admin?).to eq true
+    end
+
     it '最後の管理者は削除できないこと'
   end
 end
