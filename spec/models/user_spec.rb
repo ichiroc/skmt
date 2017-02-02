@@ -17,9 +17,14 @@ RSpec.describe User, type: :model do
   end
 
   context 'Admin の場合' do
-    it 'is_admin= non-nil でadminロールを設定できること' do
-      user.is_admin = true
-      expect(user.is_admin?).to eq true
+    it 'is_admin= "1" でadminロールを設定できること' do
+      user.is_admin = '1'
+      expect(user.is_admin?).to be_truthy
+    end
+
+    it 'is_admin= "0" でadminロールを削除できること' do
+      user.is_admin = '0'
+      expect(user.is_admin?).to be_falsy
     end
 
     it '最後の管理者は削除できないこと'
