@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.all
+    @admin_users = User.all
   end
 
   # GET /admin/users/1
@@ -12,29 +12,8 @@ class Admin::UsersController < ApplicationController
   def show
   end
 
-  # GET /admin/users/new
-  def new
-    @admin_user = Admin::User.new
-  end
-
   # GET /admin/users/1/edit
   def edit
-  end
-
-  # POST /admin/users
-  # POST /admin/users.json
-  def create
-    @admin_user = Admin::User.new(admin_user_params)
-
-    respond_to do |format|
-      if @admin_user.save
-        format.html { redirect_to @admin_user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_user }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_user.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /admin/users/1
@@ -64,11 +43,11 @@ class Admin::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
-      @admin_user = Admin::User.find(params[:id])
+      @admin_user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.fetch(:admin_user, {})
+      params.require(:user).permit(:name, :email, :zip_code, :address, :password, :password_confirmation)
     end
 end
