@@ -5,6 +5,7 @@
     %tr
       %th 名前
       %th メールアドレス
+      %th メールアドレス確認
       %th 郵便番号
       %th 住所
       %th 管理者
@@ -15,6 +16,7 @@
       %tr
         %td= admin_user.name
         %td= admin_user.email
+        %td= admin_user.confirmed_at
         %td= admin_user.zip_code
         %td= admin_user.address
         %td= admin_user.is_admin?
