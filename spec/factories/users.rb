@@ -6,11 +6,8 @@ FactoryGirl.define do
     zip_code { Faker::Address.zip_code }
     address { Faker::Address.full_address }
 
-    before :build do |user|
-      user.skip_confirmation!
-    end
-
     after :build do |user|
+      user.skip_confirmation!
       user.cart = build :cart
     end
 

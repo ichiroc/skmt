@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::ProductsController < ApplicationController
-  before_action :check_login
-  before_action :check_admin
+  before_action :authenticate_user!
+  before_action :not_permitted, unless: 'current_user.is_admin?'
   before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/products
@@ -75,11 +75,4 @@ class Admin::ProductsController < ApplicationController
       params.require(:product).permit(:name, :description, :price, :hidden, :sort_order, :image)
     end
 
-    def check_login
-      redirect_to root_path, notice: 'ログインしてください' unless user_signed_in?
-    end
-
-    def check_admin
-      redirect_to root_path, notice: '許可されていません' unless current_user.is_admin?
-    end
 end
