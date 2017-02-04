@@ -14,19 +14,13 @@ RSpec.describe :admin_user do
 
     scenario '一般ユーザーがログインしてもリダイレクトされる' do
       user = create :user, password: 'password'
-      visit new_user_session_path
-      fill_in :Email, with: user.email
-      fill_in :Password, with: 'password'
-      click_button 'Log in'
+      sign_in user
       visit admin_users_path
       expect(current_path).to eq root_path
     end
 
     scenario '管理者ユーザーがログインすれば使える'  do
-      visit new_user_session_path
-      fill_in :Email, with: @admin.email
-      fill_in :Password, with: 'password'
-      click_button 'Log in'
+      sign_in @admin
       visit admin_users_path
       expect(current_path).to eq admin_users_path
     end
