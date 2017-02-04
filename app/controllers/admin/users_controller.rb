@@ -2,10 +2,10 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @admin_users = User.all
+    @users = User.all
   end
 
   def show
@@ -16,8 +16,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @admin_user.update(admin_user_params)
-        format.html { redirect_to admin_user_path @admin_user, notice: 'User was successfully updated.' }
+      if @user.update(admin_user_params)
+        format.html { redirect_to admin_user_path @user, notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @admin_user.destroy
+    @user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
     end
@@ -33,8 +33,8 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  def set_admin_user
-    @admin_user = User.find(params[:id])
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def admin_user_params
