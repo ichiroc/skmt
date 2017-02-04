@@ -3,10 +3,8 @@
 %table.table
   %thead
     %tr
-      %th 名前
-      %th 説明
-      %th
-      %th
+      %th= t('activerecord.attributes.product.name')
+      %th= t('activerecord.attributes.product.description')
       %th
 
   %tbody
@@ -14,9 +12,10 @@
       %tr
         %td= product.name
         %td= product.description
-        %td= link_to 'Show', admin_product_path(product)
-        %td= link_to 'Edit', edit_admin_product_path(product)
-        %td= link_to 'Destroy', admin_product_path(product), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          = link_to 'Show', admin_product_path(product), class: 'btn btn-info'
+          = link_to 'Edit', edit_admin_product_path(product), class: 'btn btn-info'
+          = link_to 'Destroy', admin_product_path(product), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
