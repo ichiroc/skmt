@@ -3,6 +3,7 @@
 %table.table
   %thead
     %tr
+      %th= t('activerecord.attributes.product.image')
       %th= t('activerecord.attributes.product.name')
       %th= t('activerecord.attributes.product.description')
       %th
@@ -10,6 +11,7 @@
   %tbody
     - @admin_products.each do |product|
       %tr
+        %td= image_tag product.image.thumb.url unless product.image.thumb.blank?
         %td= product.name
         %td= product.description
         %td
