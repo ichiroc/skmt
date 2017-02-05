@@ -1,3 +1,4 @@
+# coding: utf-8
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:show, :edit, :update, :destroy]
 
@@ -14,7 +15,7 @@ class CartItemsController < ApplicationController
 
   # GET /cart_items/new
   def new
-    @cart_item = CartItem.new
+    @cart_item = CartItem.new(product: params[:product], cart: find_cart)
   end
 
   # GET /cart_items/1/edit
@@ -24,14 +25,17 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
-    @cart_item = CartItem.new(cart_item_params)
-
+    product = Product.find(params[:product_id])
+    @cart_item = find_cart.items.build(product: product)
+    # TODO: カート品目を作成する時に0をセットする
+    @cart_item.quantity = 0 if @cart_item.quantity.nil?
+    @cart_item.quantity += 1
     respond_to do |format|
       if @cart_item.save
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully created.' }
+        format.html { redirect_to product, notice: 'Cart item was successfully created.' }
         format.json { render :show, status: :created, location: @cart_item }
       else
-        format.html { render :new }
+        format.html { redirect_to product, alert: 'Cart item was not created.' }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }
       end
     end
