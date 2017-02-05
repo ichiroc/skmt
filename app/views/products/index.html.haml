@@ -1,25 +1,6 @@
-%h1 Listing products
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Price
-      %th Hidden
-      %th Sort order
-      %th Image
-      %th
-      %th
-      %th
-
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= product.name
-        %td= product.description
-        %td= product.price
-        %td= product.hidden
-        %td= product.sort_order
-        %td= product.image
-        %td= link_to 'Show', product
+- @products.each_slice(3).each do |products|
+  .row
+    - products.each do |product|
+      .col-md-4
+        %p= link_to image_tag(product.image.url), product_path(product)
+        %p= link_to product.name, product_path(product)
