@@ -11,13 +11,13 @@ RSpec.describe Product, type: :model do
     it '0円の場合は無効であること' do
       product.price = 0
       product.valid?
-      expect(product.errors[:price]).to include %(must be greater than 0)
+      expect(product.errors[:price]).to include t('errors.messages.greater_than',count: 0)
     end
 
     it '値段は必須であること' do
       product.price = nil
       product.valid?
-      expect(product.errors[:price]).to include %(can't be blank)
+      expect(product.errors[:price]).to include t('errors.messages.blank')
     end
   end
 
@@ -25,13 +25,13 @@ RSpec.describe Product, type: :model do
     it '必須であること' do
       product.sort_order = nil
       product.valid?
-      expect(product.errors[:sort_order]).to include %(can't be blank)
+      expect(product.errors[:sort_order]).to include t('errors.messages.blank')
     end
 
     it 'マイナスの場合は無効であること' do
       product.sort_order = -1
       product.valid?
-      expect(product.errors[:sort_order]).to include %(must be greater than or equal to 0)
+      expect(product.errors[:sort_order]).to include t('errors.messages.greater_than_or_equal_to', count: 0)
     end
 
     it 'デフォルトは表示順通りの順番が返ってくること'
@@ -40,13 +40,13 @@ RSpec.describe Product, type: :model do
   it '名前は必須であること' do
     product.name = nil
     product.valid?
-    expect(product.errors[:name]).to include %(can't be blank)
+    expect(product.errors[:name]).to include t('errors.messages.blank')
   end
 
   it '拡張子が画像の拡張子じゃないときはエラーになること' do
     product.image = File.new "#{Rails.root}/spec/images/dummy.txt"
     product.valid?
-    expect(product.errors[:image]).to include 'extension must be a one of jpg, jpeg, png, gif'
+    expect(product.errors[:image]).to include t('errors.messages.extension_whitelist_error')
   end
 
   describe '画像のファイルサイズ' do
@@ -57,7 +57,7 @@ RSpec.describe Product, type: :model do
     context 'ファイルサイズが10MBを超えていると' do
       let(:file_path) { "#{Rails.root}/spec/images/over10MB.png" }
       it 'エラーになること' do
-        expect(product.errors[:image]).to include 'file size must be under 10MB'
+        expect(product.errors[:image]).to include t('errors.messages.max_size_error')
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe Product, type: :model do
       skip '画像ファイルじゃないと MiniMagick でエラーになるので10MB近くの画像が手に入るまで処理をスキップする'
       let(:file_path) { "#{Rails.root}/spec/images/under10MB.png" }
       it 'アップロードできること' do
-        expect(product.errors[:image]).not_to include 'file size must be under 10MB'
+        expect(product.errors[:image]).not_to include t('errors.messages.max_size_error')
       end
     end
   end

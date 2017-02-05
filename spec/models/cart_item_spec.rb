@@ -8,7 +8,7 @@ RSpec.describe CartItem, type: :model do
   it '数量は1以上であること' do
     cart_item.quantity = 0
     cart_item.valid?
-    expect(cart_item.errors[:quantity]).to include 'must be greater than 0'
+    expect(cart_item.errors[:quantity]).to include t('errors.messages.greater_than',count: 0)
   end
 
   it '商品の合計金額を出せること' do
