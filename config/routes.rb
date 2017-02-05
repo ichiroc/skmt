@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'products#index'
-  resources :cart_items
+  resources :cart_items, only: [:index, :create, :update, :destroy]
   resources :products, only: [:show, :index]
   namespace :admin do
     resources :products

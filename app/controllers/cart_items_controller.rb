@@ -1,21 +1,11 @@
 # coding: utf-8
 class CartItemsController < ApplicationController
-  before_action :set_cart_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart_item, only: [:update, :destroy]
 
   # GET /cart_items
   # GET /cart_items.json
   def index
     @cart_items = CartItem.all
-  end
-
-  # GET /cart_items/1
-  # GET /cart_items/1.json
-  def show
-  end
-
-  # GET /cart_items/new
-  def new
-    @cart_item = CartItem.new(product: params[:product], cart: find_cart)
   end
 
   # GET /cart_items/1/edit
