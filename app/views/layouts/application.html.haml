@@ -29,16 +29,14 @@
         .navbar-text= "カート( #{find_cart.items.count} )"
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if user_signed_in?
-            .navbar-text.navbar-right= link_to 'ログアウト', destroy_user_session_path, method: :delete
+            %ul.nav.navbar-nav.navbar-right
+              = render 'admin_menu' if current_user.is_admin?
+              %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
           - else
             .navbar-text.navbar-right= link_to 'ログイン', new_user_session_path
     .container
       .row
-        .col-lg-3
-          .well.sidebar-nav
-            %h3= current_user.name if user_signed_in?
-            = render 'admin_menu' if user_signed_in? and current_user.is_admin?
-        .col-lg-9
+        .col-lg-12
           = bootstrap_flash
           = yield
       %footer
