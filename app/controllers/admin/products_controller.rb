@@ -2,28 +2,28 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
-  before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @admin_products = Product.all
+    @products = Product.all
   end
 
   def show
   end
 
   def new
-    @admin_product = Product.new
+    @product = Product.new
   end
 
   def edit
   end
 
   def create
-    @admin_product = Product.new(admin_product_params)
+    @product = Product.new(product_params)
 
     respond_to do |format|
-      if @admin_product.save
-        format.html { redirect_to [:admin, @admin_product], notice: 'Product was successfully created.' }
+      if @product.save
+        format.html { redirect_to [:admin, @product], notice: 'Product was successfully created.' }
       else
         format.html { render :new }
       end
@@ -32,8 +32,8 @@ class Admin::ProductsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @admin_product.update(admin_product_params)
-        format.html { redirect_to [:admin, @admin_product], notice: 'Product was successfully updated.' }
+      if @product.update(product_params)
+        format.html { redirect_to [:admin, @product], notice: 'Product was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -41,7 +41,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    @admin_product.destroy
+    @product.destroy
     respond_to do |format|
       format.html { redirect_to admin_products_url, notice: 'Product was successfully destroyed.' }
     end
@@ -49,11 +49,11 @@ class Admin::ProductsController < ApplicationController
 
   private
 
-  def set_admin_product
-    @admin_product = Product.find(params[:id])
+  def set_product
+    @product = Product.find(params[:id])
   end
 
-  def admin_product_params
+  def product_params
     params.require(:product).permit(:name, :description, :price, :hidden, :sort_order, :image)
   end
 end
