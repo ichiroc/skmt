@@ -2,19 +2,15 @@
 require "rails_helper"
 
 RSpec.describe :layout do
-  before :each do
-    create :admin
-  end
   feature '管理者メニュー' do
     scenario '管理者メニューを表示する' do
+      admin = create :admin
       visit root_path
-      expect(page).not_to have_content '管理者メニュー'
-
-      click_link 'ログイン'
-      fill_in 'Email', with: 'admin@admin'
-      fill_in 'Password', with: 'password'
-      click_button 'Log in'
-      expect(page).to have_content '管理者メニュー'
+      expect(page).not_to have_content '商品管理'
+      expect(page).not_to have_content 'ユーザー管理'
+      sign_in admin
+      expect(page).to have_content '商品管理'
+      expect(page).to have_content 'ユーザー管理'
     end
   end
 end
