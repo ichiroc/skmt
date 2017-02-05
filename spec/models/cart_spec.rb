@@ -6,12 +6,6 @@ RSpec.describe Cart, type: :model do
 
   it { is_expected.to be_valid }
 
-  it 'ユーザーに紐付いていないで保存するとエラーになること' do
-    cart.user = nil
-    cart.valid?
-    expect(cart.errors[:user]).to include 'must exist'
-  end
-
   it 'カートに商品を追加出来ること' do
     expect{
       cart.items << build(:cart_item)
