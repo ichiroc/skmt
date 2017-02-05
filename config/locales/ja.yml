@@ -1,5 +1,9 @@
 ---
 ja:
+  menu:
+    admin:
+      products_link: '商品管理'
+      users_link: 'ユーザー管理'
   activerecord:
     attributes:
       user:
