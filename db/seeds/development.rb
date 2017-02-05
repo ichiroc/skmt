@@ -18,7 +18,7 @@ puts 'Sample users are created.'
     name: Faker::Commerce.product_name,
     description: Faker::Lorem.paragraph,
     price: [1980, 2980, 980, 580, 480, 8800, 4800].sample,
-    hidden: nil,
+    status: 0,
     sort_order: [10, 20, 30, 40, 50].sample,
     image: File.new("#{Rails.root}/db/seeds/images/#{Random.rand(1..5)}.jpg")
   )

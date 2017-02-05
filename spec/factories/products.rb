@@ -4,7 +4,7 @@ FactoryGirl.define do
     name { Faker::Commerce.product_name }
     description { Faker::Lorem.paragraph }
     price { Faker::Commerce.price 1..10_000 }
-    hidden nil
+    status 0
     sort_order { Faker::Number.positive }
   end
 end
