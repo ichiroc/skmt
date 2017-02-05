@@ -26,6 +26,7 @@
           %span.icon-bar
           %span.icon-bar
         .navbar-brand= link_to 'さくらマーケット', root_path
+        .navbar-text= "カート( #{find_cart.items.count} )"
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if user_signed_in?
             .navbar-text.navbar-right= link_to 'ログアウト', destroy_user_session_path, method: :delete
