@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(admin_user_params)
+      if @user.update(user_params)
         format.html { redirect_to admin_user_path @user, notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def admin_user_params
+  def user_params
     permitted_attr = [:name, :email, :zip_code, :address, :is_admin]
     unless params[:user][:password].blank?
       permitted_attr << :password
