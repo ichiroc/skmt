@@ -26,15 +26,15 @@
           %span.icon-bar
           %span.icon-bar
         .navbar-brand= link_to t('brand'), root_path
-        .navbar-text= link_to t('menu.products'), products_path
-        .navbar-text= link_to "#{t('menu.cart')}( #{find_cart.items.count} )", cart_items_path
+        .navbar-text= link_to t('menu.products_link'), products_path
+        .navbar-text= link_to "#{t('menu.cart_link')}( #{find_cart.items.count} )", cart_items_path
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if user_signed_in?
             %ul.nav.navbar-nav.navbar-right
               = render 'admin_menu' if current_user.is_admin?
-              %li= link_to t('menu.logout'), destroy_user_session_path, method: :delete
+              %li= link_to t('menu.logout_link'), destroy_user_session_path, method: :delete
           - else
-            .navbar-text.navbar-right= link_to t('menu.login'), new_user_session_path
+            .navbar-text.navbar-right= link_to t('menu.login_link'), new_user_session_path
     .container
       .row
         .col-lg-12

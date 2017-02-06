@@ -22,10 +22,13 @@
 en:
   brand: Sakura Market
   menu:
-    products: Shopping
-    cart: Cart
-    login: Login
-    logout: Logout
+    products_link: Shopping
+    cart_link: Cart
+    login_link: Login
+    logout_link: Logout
+    admin:
+      products_link: Manage Produts
+      users_link: Manage Users
   errors:
     messages:
       content_type_whitelist_error: "must be a type of images."
