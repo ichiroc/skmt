@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      product: 商品
+      cart: カート
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        zip_code: 郵便番号
+        address: 住所
+        password: パスワード
+        password_confirmation: パスワード確認入力
+        is_admin: 管理者
+      product:
+        name: 商品名
+        description: 説明
+        price: 価格
+        hidden: 非表示
+        sort_order: 表示順
+        image: 画像
+      cart_item:
+        quantity: 数量
