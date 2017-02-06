@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  brand: Sakura Market
+  menu:
+    products: Shopping
+    cart: Cart
+    login: Login
+    logout: Logout
   errors:
     messages:
       content_type_whitelist_error: "must be a type of images."
