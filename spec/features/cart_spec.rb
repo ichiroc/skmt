@@ -5,26 +5,25 @@ RSpec.describe Cart do
   feature 'カートに商品を追加する' do
     before :each do
       @product = create :product
-      @user = create :user
     end
     scenario '未ログインの状態でカートに追加する' do
       expect(CartItem.count).to eq 0
       visit root_path
-      click_link @product.name
-      click_link 'Add to cart'
+      add_to_cart @product
       expect(CartItem.count).to eq 1
     end
 
     scenario '未ログインの状態でカートに追加した後にログインするとカートを引き継ぐ' do
-      expect(CartItem.count).to eq 0
+      user = create :user
       visit root_path
-      click_link @product.name
-      click_link 'Add to cart'
-      expect(CartItem.count).to eq 1
-      click_link t('menu.login_link')
-      sign_in @user
+      add_to_cart @product
+      user.reload
+      expect(user.cart.items.count).to eq 0
+      sign_in user
       click_link "#{t('menu.cart_link')}( 1 )"
       expect(page).to have_content @product.name
+      user.reload
+      expect(user.cart.items.count).to eq 1
     end
   end
 end
