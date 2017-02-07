@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      user: User
+      product: Product
+      cart: Cart
+    attributes:
+      user:
+        name: Name
+        email: Email
+        zip_code: Zip Code
+        address: Address
+        password: Password
+        password_confirmation: Password confirmation
+        is_admin: 管理者
+      product:
+        name: Name
+        description: Description
+        price: Price
+        status: Status
+        sort_order: Sort order
+        image: Image
+      cart_item:
+        quantity: Quantity
