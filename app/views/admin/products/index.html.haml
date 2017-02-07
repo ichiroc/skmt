@@ -6,6 +6,8 @@
       %th= t('activerecord.attributes.product.image')
       %th= t('activerecord.attributes.product.name')
       %th= t('activerecord.attributes.product.description')
+      %th= t('activerecord.attributes.product.sort_order')
+      %th= t('activerecord.attributes.product.status')
       %th
 
   %tbody
@@ -14,10 +16,12 @@
         %td= image_tag product.image.thumb.url unless product.image.thumb.blank?
         %td= product.name
         %td= product.description
+        %td= product.sort_order
+        %td= product.status
         %td
-          = link_to 'Show', admin_product_path(product), class: 'btn btn-info'
-          = link_to 'Edit', edit_admin_product_path(product), class: 'btn btn-info'
-          = link_to 'Destroy', admin_product_path(product), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+          = link_to t('helpers.links.show'), admin_product_path(product), class: 'btn btn-info'
+          = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-info'
+          = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
 
 %br
 
