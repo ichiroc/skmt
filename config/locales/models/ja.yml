@@ -17,7 +17,7 @@ ja:
         name: 商品名
         description: 説明
         price: 価格
-        hidden: 非表示
+        status: 非表示
         sort_order: 表示順
         image: 画像
       cart_item:
