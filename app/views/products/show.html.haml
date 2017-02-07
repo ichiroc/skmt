@@ -1,17 +1,18 @@
-.row
-  .col-md-4
-    %p= image_tag @product.image.url unless @product.image.blank?
-  .col-md-8
-    .row
-      %p
-        %b= t('activerecord.attributes.product.name')
-        %span= @product.name
-      %p
-        %b= t('activerecord.attributes.product.description')
-        %span= @product.description
-      %p
-        %b= t('activerecord.attributes.product.price')
-        %span= number_to_currency(@product.price)
-      %p= link_to 'Add to cart', cart_items_path( product_id: @product.id ), method: :post, class: 'btn btn-primary'
+#main
+  .row
+    .col-md-4
+      %p= image_tag @product.image.url unless @product.image.blank?
+    .col-md-8
+      .row
+        %p
+          %b= t('activerecord.attributes.product.name')
+          %span= @product.name
+        %p
+          %b= t('activerecord.attributes.product.description')
+          %span= @product.description
+        %p
+          %b= t('activerecord.attributes.product.price')
+          %span= number_to_currency(@product.price)
+        %p= link_to 'Add to cart', cart_items_path( product_id: @product.id ), method: :post, class: 'btn btn-primary'
 .row
   %p= link_to 'Back', products_path
