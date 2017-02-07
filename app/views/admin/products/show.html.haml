@@ -19,6 +19,6 @@
   %b Image:
   = image_tag @product.image.url unless @product.image.blank?
 
-= link_to 'Edit', edit_admin_product_path(@product)
+= link_to t('helpers.links.edit'), edit_admin_product_path(@product), class: 'btn btn-info'
 \|
-= link_to 'Back', admin_products_path
+= link_to t('helpers.links.back'), admin_products_path
