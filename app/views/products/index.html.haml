@@ -4,7 +4,8 @@
   .row
     - products.each do |product|
       .col-md-4
-        %p= link_to product_image_tag(product), product_path(product)
-        %p= link_to product.name, product_path(product)
+        .products
+          %p= link_to product_image_tag(product, width: '100%'), product_path(product)
+          %p= link_to product.name, product_path(product)
 
 = paginate @products

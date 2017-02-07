@@ -17,3 +17,15 @@
 .navbar.global-nav a:visited{
     color: white;
 }
+
+.products{
+    background-color: white;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+}
+
+#main{
+    background-color: white;
+    padding: 1em
+}
