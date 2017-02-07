@@ -18,6 +18,6 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }, presence: true
   validates :sort_order, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :name, presence: true
-  enum status: { active: 0, hidden: 0 }
+  enum status: { active: 0, hidden: 1 }
   paginates_per 10
 end
