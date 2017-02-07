@@ -7,6 +7,7 @@ ja:
       submit: "保存する"
       update: "更新する"
     links:
+      show: "表示"
       back: "戻る"
       cancel: "キャンセル"
       confirm: "本当によろしいですか？"

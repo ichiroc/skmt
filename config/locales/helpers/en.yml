@@ -9,6 +9,7 @@ en:
       submit: "Save"
       update: "Update"
     links:
+      show: "Show"
       back: "Back"
       cancel: "Cancel"
       confirm: "Are you sure?"
