@@ -21,7 +21,8 @@ RSpec.describe Cart, type: :model do
         item.product.price = 1000
       end
       cart.save!
-      total = ((cart.items.map(&:total).inject(:+) + 1200 + 400 ) * 1.08).floor
+      #       小計 + 送料 + 代引き手数料
+      total = ((10_000 + 1200 + 400 ) * 1.08).floor
       expect(cart.total).to eq total
     end
   end
