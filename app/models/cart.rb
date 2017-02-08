@@ -20,7 +20,7 @@ class Cart < ApplicationRecord
   TAX_RATE = 0.08
 
   def total
-    tax_excluded_total + tax_amount
+    tax_excluded_total + tax_amount + delivery_charge
   end
 
   def tax_amount
@@ -28,7 +28,7 @@ class Cart < ApplicationRecord
   end
 
   def tax_excluded_total
-    items.map(&:total).inject(:+)
+    items.map(&:total).inject(:+) || 0
   end
 
   def delivery_charge
