@@ -14,16 +14,28 @@ RSpec.describe Cart, type: :model do
     end.to change(cart.items, :count).by(+1)
   end
 
-  describe '合計金額' do
-    it 'カート内の商品の合計金額を計算できること' do
-      cart.items = Array.new(10) { build :cart_item }
-      cart.items.each do |item|
+  describe '小計・合計' do
+    before :each do
+      @cart = cart
+      @cart.items = Array.new(10) { build :cart_item }
+      @cart.items.each do |item|
         item.product.price = 1000
       end
-      cart.save!
-      #       小計 + 送料 + 代引き手数料
-      total = ((10_000 + 1200 + 400 ) * 1.08).floor
-      expect(cart.total).to eq total
+      @cart.save!
+    end
+
+    describe '小計金額' do
+      it 'カート内の商品の小計金額を計算できること' do
+        expect(@cart.subtotal).to eq 10_000
+      end
+    end
+
+    describe '合計金額' do
+      it 'カート内の商品の合計金額を計算できること' do
+        #       小計 + 送料 + 代引き手数料
+        total = ((10_000 + 1200 + 400 ) * 1.08).floor
+        expect(@cart.total).to eq total
+      end
     end
   end
 
