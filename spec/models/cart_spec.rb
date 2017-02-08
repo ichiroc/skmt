@@ -16,16 +16,18 @@ RSpec.describe Cart, type: :model do
 
   describe '計算' do
     it 'カート内の商品の合計金額を計算できること' do
-      items = 10.times.map{ build :cart_item }
+      items = Array.new(10) { build :cart_item }
       cart.items = items
-      expect(cart.total).to eq (items.map(&:total).inject(:+) * 1.08 ).to_i
+      total = (items.map(&:total).inject(:+) * 1.08).floor
+      expect(cart.total).to eq total
       # 念のため
       cart.items = []
       i1 = build :cart_item
       i2 = build :cart_item
       cart.items << i1
       cart.items << i2
-      expect(cart.total).to eq ((i1.total + i2.total) * 1.08).to_i
+      total = ((i1.total + i2.total) * 1.08).floor
+      expect(cart.total).to eq total
     end
 
     describe '税計算' do
@@ -34,7 +36,7 @@ RSpec.describe Cart, type: :model do
         i2 = build :cart_item
         cart.items << i1
         cart.items << i2
-        tax = ((i1.total + i2.total) * 0.08).to_i
+        tax = ((i1.total + i2.total) * 0.08).floor
         expect(cart.tax_amount).to eq tax
       end
 

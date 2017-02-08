@@ -24,7 +24,7 @@ class Cart < ApplicationRecord
   end
 
   def tax_amount
-    (tax_excluded_total * TAX_RATE).to_i
+    (tax_excluded_total * TAX_RATE).floor
   end
 
   def tax_excluded_total
