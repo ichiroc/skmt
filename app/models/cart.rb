@@ -1,3 +1,4 @@
+# coding: utf-8
 # frozen_string_literal: true
 # == Schema Information
 #
@@ -22,7 +23,7 @@ class Cart < ApplicationRecord
   DELIVERY_CHARGE_UNIT_PRICE = 600
 
   def total
-    tax_excluded_total + tax_amount + delivery_charge
+    tax_excluded_total + tax_amount
   end
 
   def tax_amount
@@ -30,12 +31,29 @@ class Cart < ApplicationRecord
   end
 
   def tax_excluded_total
-    items.map(&:total).inject(:+) || 0
+    subtotal + delivery_charge + cache_on_delivery_fee
+  end
+
+  def subtotal
+    items.map(&:total).inject(:+)  || 0
   end
 
   def delivery_charge
     div, mod = items.count.divmod DELIVERY_CHARGE_UNIT_QUANTITY
     div += 1 if mod.positive?
     div * DELIVERY_CHARGE_UNIT_PRICE
+  end
+
+  def cache_on_delivery_fee
+    case subtotal
+    when 0..9_999
+      300
+    when 10_000..29_999
+      400
+    when 30_000..99_999
+      600
+    else
+      1000
+    end
   end
 end
