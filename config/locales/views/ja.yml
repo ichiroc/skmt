@@ -1,0 +1,6 @@
+ja:
+  cart_items:
+    index:
+      subtotal: 小計
+      total: 合計
+      tax: 税

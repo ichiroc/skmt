@@ -1,24 +1,46 @@
 #main
   %h1= t('activerecord.models.cart')
 
-  %table.table
-    %thead
-      %tr
-        %th= t('activerecord.models.product')
-        %th= t('activerecord.attributes.cart_item.quantity')
-        %th
-
-    %tbody
-      - @cart_items.each do |item|
+  .row
+    %table.table
+      %thead
         %tr
+          %th= t('activerecord.models.product')
+          %th= t('activerecord.attributes.product.price')
+          %th= t('activerecord.attributes.cart_item.quantity')
+          %th= t('.subtotal')
+          %th
+
+      %tbody
+        - @cart_items.each do |item|
+          %tr
+            %td
+              = link_to product_image_tag(item.product.image.thumb)
+              = link_to item.product.name, product_path(item.product)
+            %td
+              = number_to_currency(item.product.price)
+            %td
+              = form_for item do |f|
+                .input-group
+                  .col-xs-6
+                    = f.number_field :quantity,  class: 'form-control'
+                  .col-xs-6
+                    = f.submit t('helpers.submit.update'), class: 'btn'
+            %td{align: :right}
+              = number_to_currency item.total
+            %td= link_to t('helpers.submit.delete'), item, method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+        %tr
+          %td{colspan: 2}
+          %td{align: :right}= "#{t('activerecord.models.cart')} #{t('.subtotal')}"
+          %td{align: :right}= number_to_currency find_cart.total
           %td
-            = link_to product_image_tag(item.product.image.thumb)
-            = link_to item.product.name, product_path(item.product)
+        %tr
+          %td{colspan: 2}
+          %td{align: :right}= t('.tax')
+          %td{align: :right}= number_to_currency( find_cart.total * 0.08)
           %td
-            = form_for item do |f|
-              .input-group
-                .col-xs-6
-                  = f.number_field :quantity,  class: 'form-control'
-                .col-xs-6
-                  = f.submit t('helpers.submit.update'), class: 'btn'
-          %td= link_to t('helpers.submit.delete'), item, method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+        %tr
+          %td{colspan: 2}
+          %td{align: :right}= t('.total')
+          %td{align: :right}= number_to_currency(find_cart.total * 1.08)
+          %td
