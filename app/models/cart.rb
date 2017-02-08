@@ -18,6 +18,8 @@ class Cart < ApplicationRecord
   has_many :items, class_name: CartItem
 
   TAX_RATE = 0.08
+  DELIVERY_CHARGE_UNIT_QUANTITY = 5
+  DELIVERY_CHARGE_UNIT_PRICE = 600
 
   def total
     tax_excluded_total + tax_amount + delivery_charge
@@ -32,8 +34,8 @@ class Cart < ApplicationRecord
   end
 
   def delivery_charge
-    div, mod = items.count.divmod 5
+    div, mod = items.count.divmod DELIVERY_CHARGE_UNIT_QUANTITY
     div += 1 if mod.positive?
-    div * 600
+    div * DELIVERY_CHARGE_UNIT_PRICE
   end
 end
