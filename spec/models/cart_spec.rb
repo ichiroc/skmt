@@ -37,6 +37,15 @@ RSpec.describe Cart, type: :model do
         tax = ((i1.total + i2.total) * 0.08).to_i
         expect(cart.tax_amount).to eq tax
       end
+
+      context '少数の場合' do
+        it '端数は切り捨てられる' do
+          item = build :cart_item
+          item.product = build :product, price: 10
+          cart.items << item
+          expect(cart.total).to eq 10 # -> Not 10.8
+        end
+      end
     end
   end
 end
