@@ -30,4 +30,10 @@ class Cart < ApplicationRecord
   def tax_excluded_total
     items.map(&:total).inject(:+)
   end
+
+  def delivery_charge
+    div, mod = items.count.divmod 5
+    div += 1 if mod.positive?
+    div * 600
+  end
 end

@@ -16,18 +16,34 @@ RSpec.describe Cart, type: :model do
 
   describe '計算' do
     it 'カート内の商品の合計金額を計算できること' do
-      items = Array.new(10) { build :cart_item }
-      cart.items = items
-      total = (items.map(&:total).inject(:+) * 1.08).floor
+      cart.items = Array.new(10) { build :cart_item }
+      cart.save!
+      total = (cart.items.map(&:total).inject(:+) * 1.08).floor + 1200
       expect(cart.total).to eq total
-      # 念のため
-      cart.items = []
-      i1 = build :cart_item
-      i2 = build :cart_item
-      cart.items << i1
-      cart.items << i2
-      total = ((i1.total + i2.total) * 1.08).floor
-      expect(cart.total).to eq total
+    end
+
+    describe '配達料' do
+      subject(:delivery_charge) {
+        cart.items = Array.new(amount) { build :cart_item }
+        cart.save!
+        cart.delivery_charge
+      }
+      context '5個の場合' do
+        let(:amount) { 5 }
+        it { is_expected .to eq 600 }
+      end
+      context '6個の場合' do
+        let(:amount) { 6 }
+        it { is_expected .to eq 1200 }
+      end
+      context '10個の場合' do
+        let(:amount) { 10 }
+        it { is_expected .to eq 1200 }
+      end
+      context '11個の場合' do
+        let(:amount) { 11 }
+        it { is_expected .to eq 1800 }
+      end
     end
 
     describe '税計算' do
