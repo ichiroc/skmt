@@ -1,0 +1,8 @@
+en:
+  cart_items:
+    index:
+      subtotal: Subtotal
+      total: Total
+      tax: Tax
+      delivery_charge: Delivery charge
+      cache_on_delivery_fee: COD fee
