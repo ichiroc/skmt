@@ -6,6 +6,7 @@ ja:
       create: "登録する"
       submit: "保存する"
       update: "更新する"
+      delete: "削除する"
     links:
       show: "表示"
       back: "戻る"

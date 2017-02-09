@@ -2,10 +2,10 @@
   .panel-heading
     %h1.panel-title 商品管理
   .panel-body
+    = link_to 'New Product', new_admin_product_path, class: 'btn btn-primary'
     %table.table
       %thead
         %tr
-          %th= t('activerecord.attributes.product.image')
           %th= t('activerecord.attributes.product.name')
           %th= t('activerecord.attributes.product.description')
           %th= t('activerecord.attributes.product.sort_order')
@@ -15,16 +15,12 @@
       %tbody
         - @products.each do |product|
           %tr
-            %td= image_tag product.image.thumb.url unless product.image.thumb.blank?
-            %td= product.name
+            %td
+              .col-md-5= product_image_tag product.image.thumb, width: '100%'
+              .col-md-5= link_to product.name, admin_product_path(product)
             %td= product.description
             %td= product.sort_order
             %td= product.status
             %td
-              = link_to t('helpers.links.show'), admin_product_path(product), class: 'btn btn-info'
-              = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-info'
+              = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-default'
               = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
-
-%br
-
-= link_to 'New Product', new_admin_product_path
