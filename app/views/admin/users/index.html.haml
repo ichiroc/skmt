@@ -16,13 +16,12 @@
       %tbody
         - @users.each do |user|
           %tr
-            %td= user.name
+            %td= link_to user.name, admin_user_path(user)
             %td= user.email
             %td= user.confirmed_at
             %td= user.zip_code
             %td= user.address
             %td= user.is_admin?
             %td
-              %span= link_to t('helpers.links.show'), admin_user_path(user), class: 'btn btn-primary'
               %span= link_to t('helpers.links.edit'), edit_admin_user_path(user), class: 'btn btn-info'
               %span= link_to t('helpers.links.destroy'), admin_user_path(user), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
