@@ -39,7 +39,7 @@ class Cart < ApplicationRecord
   end
 
   def delivery_charge
-    div, mod = items.count.divmod DELIVERY_CHARGE_UNIT_QUANTITY
+    div, mod = items.map(&:quantity).inject(:+).divmod DELIVERY_CHARGE_UNIT_QUANTITY
     div += 1 if mod.positive?
     div * DELIVERY_CHARGE_UNIT_PRICE
   end
