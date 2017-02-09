@@ -1,26 +1,28 @@
-%h1 ユーザー管理
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title ユーザー管理
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th= t('activerecord.attributes.user.name')
+          %th= t('activerecord.attributes.user.email')
+          %th= t('activerecord.attributes.user.email_confirmed_at')
+          %th= t('activerecord.attributes.user.zip_code')
+          %th= t('activerecord.attributes.user.address')
+          %th= t('activerecord.attributes.user.is_admin')
+          %th
 
-%table.table
-  %thead
-    %tr
-      %th= t('activerecord.attributes.user.name')
-      %th= t('activerecord.attributes.user.email')
-      %th= t('activerecord.attributes.user.email_confirmed_at')
-      %th= t('activerecord.attributes.user.zip_code')
-      %th= t('activerecord.attributes.user.address')
-      %th= t('activerecord.attributes.user.is_admin')
-      %th
-
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.name
-        %td= user.email
-        %td= user.confirmed_at
-        %td= user.zip_code
-        %td= user.address
-        %td= user.is_admin?
-        %td
-          %span= link_to t('helpers.links.show'), admin_user_path(user), class: 'btn btn-primary'
-          %span= link_to t('helpers.links.edit'), edit_admin_user_path(user), class: 'btn btn-info'
-          %span= link_to t('helpers.links.destroy'), admin_user_path(user), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.email
+            %td= user.confirmed_at
+            %td= user.zip_code
+            %td= user.address
+            %td= user.is_admin?
+            %td
+              %span= link_to t('helpers.links.show'), admin_user_path(user), class: 'btn btn-primary'
+              %span= link_to t('helpers.links.edit'), edit_admin_user_path(user), class: 'btn btn-info'
+              %span= link_to t('helpers.links.destroy'), admin_user_path(user), method: :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'

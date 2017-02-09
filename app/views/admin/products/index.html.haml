@@ -1,27 +1,29 @@
-%h1 商品管理
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title 商品管理
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th= t('activerecord.attributes.product.image')
+          %th= t('activerecord.attributes.product.name')
+          %th= t('activerecord.attributes.product.description')
+          %th= t('activerecord.attributes.product.sort_order')
+          %th= t('activerecord.attributes.product.status')
+          %th
 
-%table.table
-  %thead
-    %tr
-      %th= t('activerecord.attributes.product.image')
-      %th= t('activerecord.attributes.product.name')
-      %th= t('activerecord.attributes.product.description')
-      %th= t('activerecord.attributes.product.sort_order')
-      %th= t('activerecord.attributes.product.status')
-      %th
-
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= image_tag product.image.thumb.url unless product.image.thumb.blank?
-        %td= product.name
-        %td= product.description
-        %td= product.sort_order
-        %td= product.status
-        %td
-          = link_to t('helpers.links.show'), admin_product_path(product), class: 'btn btn-info'
-          = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-info'
-          = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+      %tbody
+        - @products.each do |product|
+          %tr
+            %td= image_tag product.image.thumb.url unless product.image.thumb.blank?
+            %td= product.name
+            %td= product.description
+            %td= product.sort_order
+            %td= product.status
+            %td
+              = link_to t('helpers.links.show'), admin_product_path(product), class: 'btn btn-info'
+              = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-info'
+              = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
 
 %br
 
