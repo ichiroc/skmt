@@ -6,9 +6,9 @@ RSpec.describe "orders/new", type: :view do
       :user => nil,
       :total => 1,
       :tax_amount => 1,
-      :delivery_charge => 1,
+      :delivery_fee => 1,
       :cache_on_delivery_fee => 1,
-      :delivery_time => 1,
+      :delivery_time_zone => 1,
       :destination_name => "MyString",
       :destination_zip_code => "MyString",
       :destination_address => "MyString"
@@ -26,11 +26,11 @@ RSpec.describe "orders/new", type: :view do
 
       assert_select "input#order_tax_amount[name=?]", "order[tax_amount]"
 
-      assert_select "input#order_delivery_charge[name=?]", "order[delivery_charge]"
+      assert_select "input#order_delivery_fee[name=?]", "order[delivery_fee]"
 
       assert_select "input#order_cache_on_delivery_fee[name=?]", "order[cache_on_delivery_fee]"
 
-      assert_select "input#order_delivery_time[name=?]", "order[delivery_time]"
+      assert_select "input#order_delivery_time_zone[name=?]", "order[delivery_time_zone]"
 
       assert_select "input#order_destination_name[name=?]", "order[destination_name]"
 

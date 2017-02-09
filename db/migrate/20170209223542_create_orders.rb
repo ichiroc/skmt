@@ -4,9 +4,9 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.integer :total
       t.integer :tax_amount
-      t.integer :delivery_charge
+      t.integer :delivery_fee
       t.integer :cache_on_delivery_fee
-      t.integer :delivery_time
+      t.integer :delivery_time_zone
       t.date :delivery_date
       t.string :destination_name
       t.string :destination_zip_code

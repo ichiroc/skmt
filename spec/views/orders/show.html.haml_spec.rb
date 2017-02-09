@@ -6,9 +6,9 @@ RSpec.describe "orders/show", type: :view do
       :user => nil,
       :total => 2,
       :tax_amount => 3,
-      :delivery_charge => 4,
+      :delivery_fee => 4,
       :cache_on_delivery_fee => 5,
-      :delivery_time => 6,
+      :delivery_time_zone => 6,
       :destination_name => "Destination Name",
       :destination_zip_code => "Destination Zip Code",
       :destination_address => "Destination Address"
