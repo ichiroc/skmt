@@ -35,11 +35,12 @@ class Cart < ApplicationRecord
   end
 
   def subtotal
-    items.map(&:total).inject(:+)  || 0
+    items.map(&:total).inject(:+) || 0
   end
 
   def delivery_charge
-    div, mod = items.map(&:quantity).inject(:+).divmod DELIVERY_CHARGE_UNIT_QUANTITY
+    # nil を 0 にしたいので to_i する
+    div, mod = items.map(&:quantity).inject(:+).to_i.divmod DELIVERY_CHARGE_UNIT_QUANTITY
     div += 1 if mod.positive?
     div * DELIVERY_CHARGE_UNIT_PRICE
   end
