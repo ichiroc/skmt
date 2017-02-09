@@ -32,7 +32,7 @@
         %tr
           %td{colspan: 2}
           %td{align: :right}= "#{t('activerecord.models.cart')} #{t('.subtotal')}"
-          %td{align: :right}= number_to_currency find_cart.tax_excluded_total
+          %td{align: :right}= number_to_currency find_cart.subtotal
           %td
         %tr
           %td{colspan: 2}
@@ -41,11 +41,16 @@
           %td
         %tr
           %td{colspan: 2}
+          %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
+          %td{align: :right}= number_to_currency find_cart.cache_on_delivery_fee
+          %td
+        %tr
+          %td{colspan: 2}
           %td{align: :right}= t('.tax')
-          %td{align: :right}= number_to_currency( find_cart.tax_amount)
+          %td{align: :right}= number_to_currency find_cart.tax_amount
           %td
         %tr
           %td{colspan: 2}
           %td{align: :right}= t('.total')
-          %td{align: :right}= number_to_currency(find_cart.total)
+          %td{align: :right}= number_to_currency find_cart.total
           %td
