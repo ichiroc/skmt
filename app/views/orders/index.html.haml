@@ -1,0 +1,39 @@
+%h1 Listing orders
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Total
+      %th Tax amount
+      %th Delivery charge
+      %th Cache on delivery fee
+      %th Delivery time
+      %th Delivery date
+      %th Destination name
+      %th Destination zip code
+      %th Destination address
+      %th
+      %th
+      %th
+
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.user
+        %td= order.total
+        %td= order.tax_amount
+        %td= order.delivery_charge
+        %td= order.cache_on_delivery_fee
+        %td= order.delivery_time
+        %td= order.delivery_date
+        %td= order.destination_name
+        %td= order.destination_zip_code
+        %td= order.destination_address
+        %td= link_to 'Show', order
+        %td= link_to 'Edit', edit_order_path(order)
+        %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Order', new_order_path

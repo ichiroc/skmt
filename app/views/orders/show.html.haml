@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @order.user
+%p
+  %b Total:
+  = @order.total
+%p
+  %b Tax amount:
+  = @order.tax_amount
+%p
+  %b Delivery charge:
+  = @order.delivery_charge
+%p
+  %b Cache on delivery fee:
+  = @order.cache_on_delivery_fee
+%p
+  %b Delivery time:
+  = @order.delivery_time
+%p
+  %b Delivery date:
+  = @order.delivery_date
+%p
+  %b Destination name:
+  = @order.destination_name
+%p
+  %b Destination zip code:
+  = @order.destination_zip_code
+%p
+  %b Destination address:
+  = @order.destination_address
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path

@@ -1,0 +1,17 @@
+= simple_form_for(@order) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.input :total
+    = f.input :tax_amount
+    = f.input :delivery_charge
+    = f.input :cache_on_delivery_fee
+    = f.input :delivery_time
+    = f.input :delivery_date
+    = f.input :destination_name
+    = f.input :destination_zip_code
+    = f.input :destination_address
+
+  .form-actions
+    = f.button :submit
