@@ -6,3 +6,4 @@ en:
       tax: Tax
       delivery_charge: Delivery charge
       cache_on_delivery_fee: COD fee
+      cart_is_empty: The cart is empty. Enjoy your shopping!

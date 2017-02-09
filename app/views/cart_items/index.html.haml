@@ -1,39 +1,42 @@
 #main
   %h1= t('activerecord.models.cart')
-  .row
-    %table.table
-      %thead
-        %tr
-          %th= t('activerecord.models.product')
-          %th= t('activerecord.attributes.product.price')
-          %th= t('activerecord.attributes.cart_item.quantity')
-          %th= t('.subtotal')
-          %th
+  - if @cart_items.blank?
+    %p= t('.cart_is_empty')
+  - else
+    .row
+      %table.table
+        %thead
+          %tr
+            %th= t('activerecord.models.product')
+            %th= t('activerecord.attributes.product.price')
+            %th= t('activerecord.attributes.cart_item.quantity')
+            %th= t('.subtotal')
+            %th
 
-      %tbody
-        = render @cart_items
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('activerecord.models.cart')} #{t('.subtotal')}"
-          %td{align: :right}= number_to_currency find_cart.subtotal
-          %td
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('.delivery_charge')}"
-          %td{align: :right}= number_to_currency find_cart.delivery_charge
-          %td
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
-          %td{align: :right}= number_to_currency find_cart.cache_on_delivery_fee
-          %td
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= t('.tax')
-          %td{align: :right}= number_to_currency find_cart.tax_amount
-          %td
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= t('.total')
-          %td{align: :right}= number_to_currency find_cart.total
-          %td
+        %tbody
+          = render @cart_items
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('activerecord.models.cart')} #{t('.subtotal')}"
+            %td{align: :right}= number_to_currency find_cart.subtotal
+            %td
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('.delivery_charge')}"
+            %td{align: :right}= number_to_currency find_cart.delivery_charge
+            %td
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
+            %td{align: :right}= number_to_currency find_cart.cache_on_delivery_fee
+            %td
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= t('.tax')
+            %td{align: :right}= number_to_currency find_cart.tax_amount
+            %td
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= t('.total')
+            %td{align: :right}= number_to_currency find_cart.total
+            %td
