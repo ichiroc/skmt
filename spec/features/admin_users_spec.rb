@@ -30,7 +30,7 @@ RSpec.describe :admin_user do
 
       scenario '編集できる' do
         click_link t('menu.admin.users_link')
-        first(:link, 'Edit').click
+        first(:link, t('helpers.links.edit')).click
         fill_in t('activerecord.attributes.user.name'), with: 'ほげ'
         click_button t('helpers.submit.update')
         expect(page).to have_content 'User was successfully updated.'
