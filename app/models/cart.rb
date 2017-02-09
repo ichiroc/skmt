@@ -19,8 +19,8 @@ class Cart < ApplicationRecord
   has_many :items, class_name: CartItem
 
   TAX_RATE = 0.08
-  DELIVERY_CHARGE_UNIT_QUANTITY = 5
-  DELIVERY_CHARGE_UNIT_PRICE = 600
+  DELIVERY_FEE_UNIT_QUANTITY = 5
+  DELIVERY_FEE_UNIT_PRICE = 600
 
   def total
     tax_excluded_total + tax_amount
@@ -31,18 +31,18 @@ class Cart < ApplicationRecord
   end
 
   def tax_excluded_total
-    subtotal + delivery_charge + cache_on_delivery_fee
+    subtotal + delivery_fee + cache_on_delivery_fee
   end
 
   def subtotal
     items.map(&:total).inject(:+) || 0
   end
 
-  def delivery_charge
+  def delivery_fee
     # nil を 0 にしたいので to_i する
-    div, mod = items.map(&:quantity).inject(:+).to_i.divmod DELIVERY_CHARGE_UNIT_QUANTITY
+    div, mod = items.map(&:quantity).inject(:+).to_i.divmod DELIVERY_FEE_UNIT_QUANTITY
     div += 1 if mod.positive?
-    div * DELIVERY_CHARGE_UNIT_PRICE
+    div * DELIVERY_FEE_UNIT_PRICE
   end
 
   def cache_on_delivery_fee

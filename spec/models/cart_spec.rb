@@ -40,10 +40,10 @@ RSpec.describe Cart, type: :model do
   end
 
   describe '配達料' do
-    subject(:delivery_charge) {
+    subject(:delivery_fee) {
       cart.items = Array.new(amount) { build :cart_item }
       cart.save!
-      cart.delivery_charge
+      cart.delivery_fee
     }
     context '5個の場合' do
       let(:amount) { 5 }

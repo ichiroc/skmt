@@ -51,7 +51,7 @@ class Order < ApplicationRecord
     self.user = cart.user
     self.total = cart.total
     self.tax_amount = cart.tax_amount
-    self.delivery_charge = cart.delivery_charge
+    self.delivery_fee = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
   end
 end
