@@ -1,15 +1,17 @@
 %tr
   %td
-    = link_to product_image_tag(cart_item.product.image.thumb)
-    = link_to cart_item.product.name, product_path(cart_item.product)
+    .col-md-5
+      = link_to product_image_tag(cart_item.product.image.thumb)
+    .col-md-7
+      = link_to cart_item.product.name, product_path(cart_item.product)
   %td
     = number_to_currency(cart_item.product.price)
   %td
     = form_for cart_item do |f|
       .input-group
-        .col-xs-6
+        .col-md-6
           = f.number_field :quantity,  class: 'form-control'
-        .col-xs-6
+        .col-md-6
           = f.submit t('helpers.submit.update'), class: 'btn'
   %td{align: :right}
     = number_to_currency cart_item.total
