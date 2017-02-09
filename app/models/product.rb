@@ -6,7 +6,7 @@
 #  name        :string
 #  description :text
 #  price       :integer
-#  status      :integer          default(0)
+#  status      :integer          default("active")
 #  sort_order  :integer          default(100)
 #  image       :string
 #  created_at  :datetime         not null
