@@ -2,19 +2,20 @@
 require 'rails_helper'
 
 RSpec.describe OrderItem, type: :model do
-  subject(:order_item) { build :order_item }
+  subject(:item) { build :order_item }
   it{ is_expected.to be_valid }
 
   it 'バリデーション前にカート品目から情報が生成される' do
-    order_item.valid?
-    expect(order_item.product_price).to eq order_item.cart_item.product.price
-    expect(order_item.product_name).to eq order_item.cart_item.product.name
-    expect(order_item.quantity).to eq order_item.quantity
+    item.valid?
+    cart_item = item.cart_item
+    expect(item.product_price).to eq cart_item.product.price
+    expect(item.product_name).to eq cart_item.product.name
+    expect(item.quantity).to eq item.quantity
   end
 
   it 'オーダー品目の合計金額を計算できる' do
-    order_item.valid?
-    expect(order_item.total).to eq order_item.cart_item.total
+    item.valid?
+    expect(item.total).to eq item.cart_item.total
   end
 
   describe '商品金額(product_price)' do
@@ -22,7 +23,7 @@ RSpec.describe OrderItem, type: :model do
     it '0以下だとエラー'
   end
 
-  descrie '数量' do
+  describe '数量' do
     it '必須である'
     it '0以下だとエラー'
   end
