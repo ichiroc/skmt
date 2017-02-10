@@ -27,15 +27,15 @@ class OrderItem < ApplicationRecord
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   before_validation :copy_from_cart_item
 
+  def total
+    price * quantity
+  end
+
   private
 
   def copy_from_cart_item
     self.product_name = cart_item.product.name
     self.price = cart_item.product.price
     self.quantity = cart_item.quantity
-  end
-
-  def total
-    price * quantity
   end
 end
