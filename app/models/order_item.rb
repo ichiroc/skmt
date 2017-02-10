@@ -2,14 +2,14 @@
 #
 # Table name: order_items
 #
-#  id           :integer          not null, primary key
-#  order_id     :integer
-#  product_id   :integer
-#  product_name :string
-#  price        :integer
-#  quantity     :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  order_id      :integer
+#  product_id    :integer
+#  product_name  :string
+#  product_price :integer
+#  quantity      :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
@@ -23,19 +23,19 @@ class OrderItem < ApplicationRecord
   belongs_to :product
 
   validates :product_name, presence: true
-  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :product_price, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   before_validation :copy_from_cart_item
 
   def total
-    price * quantity
+    product_price * quantity
   end
 
   private
 
   def copy_from_cart_item
     self.product_name = cart_item.product.name
-    self.price = cart_item.product.price
+    self.product_price = cart_item.product.price
     self.quantity = cart_item.quantity
   end
 end
