@@ -12,6 +12,9 @@ RSpec.describe OrderItem, type: :model do
     expect(order_item.quantity).to eq order_item.quantity
   end
 
-  it 'オーダー品目の合計金額を計算できる'
+  it 'オーダー品目の合計金額を計算できる' do
+    order_item.valid?
+    expect(order_item.total).to eq order_item.cart_item.total
+  end
 
 end
