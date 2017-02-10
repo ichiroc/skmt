@@ -18,6 +18,24 @@
 #
 
 class OrderItem < ApplicationRecord
+  attr_accessor :cart_item
   belongs_to :order
   belongs_to :product
+
+  validates :product_name, presence: true
+  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  before_validation :copy_from_cart_item
+
+  private
+
+  def copy_from_cart_item
+    self.product_name = cart_item.product.name
+    self.price = cart_item.product.price
+    self.quantity = cart_item.quantity
+  end
+
+  def total
+    price * quantity
+  end
 end
