@@ -17,4 +17,13 @@ RSpec.describe OrderItem, type: :model do
     expect(order_item.total).to eq order_item.cart_item.total
   end
 
+  describe '商品金額(product_price)' do
+    it '必須である'
+    it '0以下だとエラー'
+  end
+
+  descrie '数量' do
+    it '必須である'
+    it '0以下だとエラー'
+  end
 end
