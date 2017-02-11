@@ -1,18 +1,6 @@
 # https://raw.githubusercontent.com/tigrish/devise-i18n/master/rails/locales/ja.yml
 ---
 ja:
-  activerecord:
-    attributes:
-      user:
-        current_password: "現在のパスワード"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "確認用パスワード"
-        remember_me: "ログインを記憶"
-        reset_password_token:
-        unlock_token:
-    models:
-      user: "ユーザ"
   devise:
     confirmations:
       confirmed: "アカウントを登録しました。"

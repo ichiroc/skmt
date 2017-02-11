@@ -6,14 +6,18 @@ ja:
       cart: カート
     attributes:
       user:
-        name: 名前
+        address: 住所
+        current_password: 現在のパスワード
         email: メールアドレス
         email_confirmed_at: メールアドレス確認日時
-        zip_code: 郵便番号
-        address: 住所
-        password: パスワード
-        password_confirmation: パスワード確認入力
         is_admin: 管理者
+        name: 名前
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+        reset_password_token:
+        unlock_token:
+        zip_code: 郵便番号
       product:
         name: 商品名
         description: 説明
