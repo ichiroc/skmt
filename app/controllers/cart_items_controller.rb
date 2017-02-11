@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:update, :destroy]
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = find_cart.items.includes(:product)
   end
 
   def create
