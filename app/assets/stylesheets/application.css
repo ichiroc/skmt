@@ -14,6 +14,10 @@
  *= require_self
  */
 
+.navbar.global-nav a{
+    color: white;
+}
+
 .navbar.global-nav a:visited{
     color: white;
 }
