@@ -58,7 +58,18 @@ RSpec.describe OrderItem, type: :model do
   end
 
   describe '数量' do
-    it '必須である'
-    it '0以下だとエラー'
+    subject(:quantity_error){
+      item = build :order_item, quantity: quantity
+      item.valid?
+      item.errors[:quantity]
+    }
+    context '空の場合' do
+      let(:quantity) { nil }
+      it { is_expected.to include t('errors.messages.blank') }
+    end
+    context '0以下の場合' do
+      let(:quantity) { 0 }
+      it { is_expected.to include t('errors.messages.greater_than', count: 0) }
+    end
   end
 end
