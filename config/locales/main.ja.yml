@@ -5,6 +5,7 @@ ja:
     cart_link: カート
     login_link: ログイン
     logout_link: ログアウト
+    user_link: アカウント情報
     admin:
       products_link: '商品管理'
       users_link: 'ユーザー管理'

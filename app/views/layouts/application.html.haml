@@ -33,6 +33,7 @@
           - if user_signed_in?
             %ul.nav.navbar-nav.navbar-right
               = render 'admin_menu' if current_user.is_admin?
+              %li= link_to t('menu.user_link'), edit_user_registration_path
               %li= link_to t('menu.logout_link'), destroy_user_session_path, method: :delete
           - else
 
