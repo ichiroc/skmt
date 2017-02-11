@@ -11,6 +11,7 @@
           %th= t('activerecord.attributes.product.sort_order')
           %th= t('activerecord.attributes.product.status')
           %th
+          %th
 
       %tbody
         - @products.each do |product|
@@ -23,4 +24,5 @@
             %td= product.status
             %td
               = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-default'
+            %td
               = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
