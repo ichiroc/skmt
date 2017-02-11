@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 class Admin::UsersController < ApplicationController
+  include Pundit
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   def index
-    @users = User.all
+    @users = authorize User.all
   end
 
   def show
@@ -34,7 +36,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = authorize User.find(params[:id])
   end
 
   def user_params

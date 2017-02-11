@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 class Admin::ProductsController < ApplicationController
+  include Pundit
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   def index
-    @products = Product.all.order(:sort_order)
+    @products = authorize Product.all.order(:sort_order)
   end
 
   def show
@@ -50,7 +52,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = authorize Product.find(params[:id])
   end
 
   def product_params

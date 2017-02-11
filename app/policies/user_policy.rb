@@ -1,4 +1,4 @@
-class ProductPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -6,26 +6,22 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
-  def create?
     @user.is_admin?
   end
 
-  def edit?
-    create?
+  def show?
+    index?
+  end
+
+  def edit
+    index?
   end
 
   def update?
-    create?
+    index?
   end
 
   def destroy?
-    create?
+    index?
   end
 end

@@ -1,24 +1,12 @@
-class ProductPolicy < ApplicationPolicy
+class CartItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
     end
   end
 
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
   def create?
-    @user.is_admin?
-  end
-
-  def edit?
-    create?
+    @user == @record.cart.user
   end
 
   def update?
