@@ -25,7 +25,8 @@ class OrderItem < ApplicationRecord
   validates :product_name, presence: true
   validates :product_price, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-  before_validation :copy_from_cart_item
+
+  before_validation :copy_from_cart_item, unless: 'cart_item.blank?'
 
   def total
     product_price * quantity
