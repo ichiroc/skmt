@@ -33,13 +33,14 @@ class Order < ApplicationRecord
                              zone16_18: 4,
                              zone18_20: 5,
                              zone20_21: 6 }
-  before_save :copy_from_cart, unless: ->() { cart.blank? }
+
   validates :total, presence: true, numericality: { greater_than: 0 }
   validates :delivery_time_zone, presence: true
   validates :destination_name, presence: true
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
   validates :destination_address, presence: true
 
+  before_validation :copy_from_cart, unless: ->() { cart.blank? }
   before_validation :format_zip_code
 
   def subtotal
@@ -58,5 +59,6 @@ class Order < ApplicationRecord
     self.tax_amount = cart.tax_amount
     self.delivery_fee = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
+    self.items = cart.items.map{ |ci| self.items.build(cart_item: ci) }
   end
 end
