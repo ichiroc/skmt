@@ -1,9 +1,9 @@
 .panel.panel-default.container
   .panel-body
     .row
-      .col-md-4
-        %p= image_tag @product.image.url unless @product.image.blank?
-      .col-md-8
+      .col-md-5
+        %p.text-center= image_tag @product.image.url unless @product.image.blank?
+      .col-md-7
         .row
           %p
             %b= t('activerecord.attributes.product.name')
