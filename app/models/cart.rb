@@ -16,7 +16,7 @@
 
 class Cart < ApplicationRecord
   belongs_to :user, optional: true
-  has_many :items, class_name: CartItem
+  has_many :items, class_name: CartItem, dependent: :destroy
 
   TAX_RATE = 0.08
   DELIVERY_FEE_UNIT_QUANTITY = 5

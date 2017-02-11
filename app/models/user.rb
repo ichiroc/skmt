@@ -38,6 +38,7 @@ class User < ApplicationRecord
          :confirmable
 
   has_one :cart, required: true
+  has_many :order, dependent: :destroy
   before_validation :build_cart, if: ->(u) { u.cart.blank? }
 
   def is_admin= flag

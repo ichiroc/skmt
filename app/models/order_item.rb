@@ -20,7 +20,7 @@
 class OrderItem < ApplicationRecord
   attr_accessor :cart_item
   belongs_to :order
-  belongs_to :product
+  belongs_to :product, optional: true
 
   validates :product_name, presence: true
   validates :product_price, presence: true, numericality: { greater_than: 0 }
