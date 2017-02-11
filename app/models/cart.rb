@@ -39,8 +39,7 @@ class Cart < ApplicationRecord
   end
 
   def delivery_fee
-    # nil を 0 にしたいので to_i する
-    div, mod = items.map(&:quantity).inject(:+).to_i.divmod DELIVERY_FEE_UNIT_QUANTITY
+    div, mod = items.sum(:quantity).divmod DELIVERY_FEE_UNIT_QUANTITY
     div += 1 if mod.positive?
     div * DELIVERY_FEE_UNIT_PRICE
   end
