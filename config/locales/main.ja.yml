@@ -1,11 +1,10 @@
 ja:
   brand: さくらマーケット
   menu:
-    products_link: お買い物
-    cart_link: カート
-    login_link: ログイン
-    logout_link: ログアウト
-    user_link: アカウント情報
-    admin:
-      products_link: '商品管理'
-      users_link: 'ユーザー管理'
+    shopping: お買い物
+    cart: カート
+    login: ログイン
+    logout: ログアウト
+    account: アカウント
+    manage_products: '商品管理'
+    manage_users: 'ユーザー管理'
