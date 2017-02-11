@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :find_cart
+
   private
 
   def find_cart
@@ -14,11 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_cart
-    begin
-      return Cart.find session[:cart_id] if session[:cart_id]
-    rescue ActiveRecord::RecordNotFound
-      # 開発中の都合で session に対応するカートがなくなる場合があるので、その場合は新たに作る
-    end
+    return Cart.find session[:cart_id] if Cart.exists? session[:cart_id]
     cart = Cart.create
     session[:cart_id] = cart.id
     cart
