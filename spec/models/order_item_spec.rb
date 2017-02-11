@@ -6,12 +6,18 @@ RSpec.describe OrderItem, type: :model do
   subject(:order_item) { build :order_item }
   it { is_expected.to be_valid }
 
+  it 'オーダー品目の合計金額を計算できる' do
+    order_item.product_price = 100
+    order_item.quantity = 10
+    expect(order_item.total).to eq 1000
+  end
+
   describe '注文品目情報' do
     subject(:order_item) { build :order_item, cart_item: cart_item }
 
     context 'カート品目と関連付けがあれば' do
       let(:cart_item) { build :cart_item }
-      it 'バリデーション前にカート品目から情報が生成される' do
+      it 'バリデーション前にカート品目の情報が複製される' do
         order_item.valid?
         cart_item = order_item.cart_item
         expect(order_item.product_price).to eq cart_item.product.price
@@ -33,11 +39,6 @@ RSpec.describe OrderItem, type: :model do
         expect(order_item.quantity).to eq quantity
       end
     end
-  end
-
-  it 'オーダー品目の合計金額を計算できる' do
-    order_item.valid?
-    expect(order_item.total).to eq order_item.cart_item.total
   end
 
   describe '商品金額(product_price)' do
