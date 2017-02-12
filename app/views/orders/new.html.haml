@@ -33,6 +33,7 @@
           %td{align: :right}= t('.total')
           %td{align: :right}= number_to_currency @order.total
     = simple_form_for @order do |f|
+      = f.error_notification
       = f.input :destination_zip_code, required: :true
       = f.input :destination_name
       = f.input :destination_address

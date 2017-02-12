@@ -1,3 +1,4 @@
+# coding: utf-8
 # frozen_string_literal: true
 # == Schema Information
 #
@@ -40,6 +41,7 @@ class Order < ApplicationRecord
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
   validates :destination_address, presence: true
 
+  after_save :empty_cart!
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def subtotal
@@ -52,8 +54,8 @@ class Order < ApplicationRecord
     self.tax_amount = cart.tax_amount
     self.delivery_fee = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
-    self.items = cart.items.map{ |ci|
-      oi = self.items.build(cart_item: ci)
+    self.items = cart.items.map { |ci|
+      oi = items.build(cart_item: ci)
       oi.copy_data_from_cart_item!
     }
     self
@@ -61,8 +63,11 @@ class Order < ApplicationRecord
 
   private
 
-  def format_zip_code
-    self.destination_zip_code = self.destination_zip_code.delete('-').strip
+  def empty_cart!
+    cart.empty!
   end
 
+  def format_zip_code
+    self.destination_zip_code = destination_zip_code.delete('-').strip
+  end
 end

@@ -56,4 +56,8 @@ class Cart < ApplicationRecord
       1000
     end
   end
+
+  def empty!
+    items.each(&:destroy)
+  end
 end
