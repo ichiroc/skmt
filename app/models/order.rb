@@ -40,11 +40,23 @@ class Order < ApplicationRecord
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
   validates :destination_address, presence: true
 
-  before_validation :copy_from_cart, unless: -> { cart.blank? }
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def subtotal
     items.map(&:total).inject(:+)
+  end
+
+  def copy_data_from_cart!
+    self.user = cart.user
+    self.total = cart.total
+    self.tax_amount = cart.tax_amount
+    self.delivery_fee = cart.delivery_fee
+    self.cache_on_delivery_fee = cart.cache_on_delivery_fee
+    self.items = cart.items.map{ |ci|
+      oi = self.items.build(cart_item: ci)
+      oi.copy_data_from_cart_item!
+    }
+    self
   end
 
   private
@@ -53,12 +65,4 @@ class Order < ApplicationRecord
     self.destination_zip_code = self.destination_zip_code.delete('-').strip
   end
 
-  def copy_from_cart
-    self.user = cart.user
-    self.total = cart.total
-    self.tax_amount = cart.tax_amount
-    self.delivery_fee = cart.delivery_fee
-    self.cache_on_delivery_fee = cart.cache_on_delivery_fee
-    self.items = cart.items.map{ |ci| self.items.build(cart_item: ci) }
-  end
 end

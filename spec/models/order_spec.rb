@@ -9,7 +9,7 @@ RSpec.describe Order, type: :model do
     cart.items = Array.new(10){ build :cart_item }
     cart.save!
     order.cart = cart
-    order.valid?
+    order.copy_data_from_cart!
     expect(order.total).to eq cart.total
     expect(order.tax_amount).to eq cart.tax_amount
     expect(order.delivery_fee).to eq cart.delivery_fee

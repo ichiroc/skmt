@@ -14,7 +14,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = Order.new cart: find_cart
+    @order.copy_data_from_cart!
   end
 
   # GET /orders/1/edit
@@ -25,7 +26,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.cart = find_cart
+    @order.copy_data_from_cart!
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -69,6 +71,16 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :total, :tax_amount, :delivery_fee, :cache_on_delivery_fee, :delivery_time_zone, :delivery_date, :destination_name, :destination_zip_code, :destination_address)
+      params.require(:order).permit(:user_id,
+                                    :total,
+                                    :tax_amount,
+                                    :delivery_fee,
+                                    :cache_on_delivery_fee,
+                                    :delivery_time_zone,
+                                    :delivery_date,
+                                    :destination_name,
+                                    :destination_zip_code,
+                                    :destination_address,
+                                    :cart)
     end
 end

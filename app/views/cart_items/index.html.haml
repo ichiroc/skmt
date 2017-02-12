@@ -41,3 +41,4 @@
             %td{align: :right}= t('.total')
             %td{align: :right}= number_to_currency find_cart.total
             %td
+      %p= link_to t('.proceed_to_checkout'), new_order_path, class: 'btn btn-primary'
