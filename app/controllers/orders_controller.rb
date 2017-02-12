@@ -15,8 +15,9 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new cart: find_cart
+    @order = current_user.orders.build cart: find_cart
     @order.copy_data_from_cart!
+    @order.set_default_destination!
   end
 
   # GET /orders/1/edit
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
     @order.cart = find_cart
     @order.copy_data_from_cart!
     respond_to do |format|
@@ -81,7 +82,6 @@ class OrdersController < ApplicationController
                                     :delivery_date,
                                     :destination_name,
                                     :destination_zip_code,
-                                    :destination_address,
-                                    :cart)
+                                    :destination_address)
     end
 end
