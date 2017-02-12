@@ -8,4 +8,4 @@ $(document).on 'turbolinks:load', (e)->
     startDate: '<%= DeliveryDate.formatted_earliest_date %>'
     endDate: '<%= DeliveryDate.formatted_latext_date %>'
     datesDisabled:
-      <%= DeliveryDate.formatted_dates_disabled.to_json %>
+      <%= DeliveryDate.formatted_excluded_dates.to_json %>
