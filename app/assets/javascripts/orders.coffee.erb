@@ -1,0 +1,11 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$(document).on 'turbolinks:load', (e)->
+  $('.datepicker').datepicker
+    language: 'ja'
+    startDate: '<%= DeliveryDate.formatted_earliest_date %>'
+    endDate: '<%= DeliveryDate.formatted_latext_date %>'
+    datesDisabled:
+      <%= DeliveryDate.formatted_dates_disabled.to_json %>

@@ -23,5 +23,6 @@ module Skmt
     # -- all .rb files in that directory are automatically loaded.
     I18n.default_locale = :ja
     I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.time_zone = 'Tokyo'
   end
 end
