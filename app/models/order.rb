@@ -25,6 +25,7 @@
 
 class Order < ApplicationRecord
   attr_accessor :cart
+  attr_accessor :remember_destination
   belongs_to :user
   has_many :items, class_name: OrderItem, dependent: :destroy
   enum delivery_time_slot: { anytime:   0,
@@ -42,9 +43,11 @@ class Order < ApplicationRecord
   validates :destination_address, presence: true
 
   after_initialize :set_cart_data!, if: -> { new_record? && cart }
-  after_save :empty_cart!, if: -> { cart }
 
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
+
+  before_save :save_destination_to_user!, if: -> { remember_destination }
+  after_save :empty_cart!, if: -> { cart }
 
   def subtotal
     items.map(&:total).inject(:+)
@@ -52,18 +55,26 @@ class Order < ApplicationRecord
 
   private
 
+  def save_destination_to_user!
+    user.name = destination_name
+    user.zip_code = destination_zip_code
+    user.address = destination_address
+    user.save!
+    self
+  end
+
   def set_cart_data!
-    self.user = cart.user
-    self.total = cart.total
-    self.tax_amount = cart.tax_amount
-    self.delivery_fee = cart.delivery_fee
+    self.user                  = cart.user
+    self.total                 = cart.total
+    self.tax_amount            = cart.tax_amount
+    self.delivery_fee          = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
-    self.destination_address = cart.user.address
-    self.destination_zip_code = cart.user.zip_code
-    self.destination_name = user.name
-    cart.items.each { |ci|
+    self.destination_address   = cart.user.address  if destination_address.blank?
+    self.destination_zip_code  = cart.user.zip_code if destination_zip_code.blank?
+    self.destination_name      = user.name          if destination_name.blank?
+    cart.items.each do |ci|
       self.items.build(cart_item: ci)
-    }
+    end
     self
   end
 

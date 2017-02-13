@@ -78,6 +78,7 @@ class OrdersController < ApplicationController
                                     :delivery_date,
                                     :destination_name,
                                     :destination_zip_code,
-                                    :destination_address)
+                                    :destination_address,
+                                    :remember_destination)
     end
 end

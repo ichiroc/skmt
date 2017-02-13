@@ -37,6 +37,7 @@
       = f.input :destination_zip_code, required: :true
       = f.input :destination_name
       = f.input :destination_address
+      = f.input :remember_destination, as: :boolean
       = f.input :delivery_date, as: :string, input_html: { class: 'datepicker'}, hint: '3営業日以降14営業日まで選択できます'
       = f.input :delivery_time_slot, collection: Order.delivery_time_slots.keys
       = f.submit t('.submit_order'), class: 'btn btn-primary'

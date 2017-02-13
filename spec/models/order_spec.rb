@@ -31,6 +31,17 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe '配達先を保存する' do
+    it '配達先を保存するフラグがたっていたら、注文確定時にユーザー情報に保存する' do
+      order.remember_destination = true
+      order.save!
+      user = order.user
+      expect(user.name).to eq order.destination_name
+      expect(user.zip_code).to eq order.destination_zip_code
+      expect(user.address).to eq order.destination_address
+    end
+  end
+
   describe '配達氏名' do
     subject(:error_messsage){
       order.destination_name = destination_name
