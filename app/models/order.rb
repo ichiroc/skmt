@@ -10,7 +10,7 @@
 #  tax_amount            :integer
 #  delivery_fee          :integer
 #  cache_on_delivery_fee :integer
-#  delivery_time_zone    :integer
+#  delivery_time_slot    :integer          default("unspecified")
 #  delivery_date         :date
 #  destination_name      :string
 #  destination_zip_code  :string
@@ -27,21 +27,22 @@ class Order < ApplicationRecord
   attr_accessor :cart
   belongs_to :user
   has_many :items, class_name: OrderItem, dependent: :destroy
-  enum delivery_time_zone: { unspecified:   0,
-                             zone8_12:  1,
-                             zone12_14: 2,
-                             zone14_16: 3,
-                             zone16_18: 4,
-                             zone18_20: 5,
-                             zone20_21: 6 }
+  enum delivery_time_slot: { anytime:   0,
+                             between_8_and_12:  1,
+                             between_12_and_14: 2,
+                             between_14_and_16: 3,
+                             between_16_and_18: 4,
+                             between_18_and_20: 5,
+                             between_20_and_21: 6 }
 
   validates :total, presence: true, numericality: { greater_than: 0 }
-  validates :delivery_time_zone, presence: true
+  validates :delivery_time_slot, presence: true
   validates :destination_name, presence: true
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
   validates :destination_address, presence: true
 
   after_save :empty_cart!
+
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def subtotal

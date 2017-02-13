@@ -27,12 +27,12 @@ RSpec.describe Order, type: :model do
 
   describe '配達時間帯' do
     subject(:error_messsage){
-      order.delivery_time_zone = delivery_time_zone
+      order.delivery_time_slot = delivery_time_slot
       order.valid?
-      order.errors[:delivery_time_zone]
+      order.errors[:delivery_time_slot]
     }
     context '空の場合' do
-      let(:delivery_time_zone){ nil }
+      let(:delivery_time_slot){ nil }
       it { is_expected.to include t('errors.messages.blank') }
     end
   end
