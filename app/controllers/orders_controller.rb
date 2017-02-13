@@ -16,8 +16,6 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = current_user.orders.build cart: find_cart
-    @order.copy_data_from_cart!
-    @order.set_default_destination!
   end
 
   # GET /orders/1/edit
@@ -27,9 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_user.orders.build(order_params)
-    @order.cart = find_cart
-    @order.copy_data_from_cart!
+    @order = current_user.orders.build(order_params.merge(cart: find_cart))
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }

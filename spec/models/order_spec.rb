@@ -4,25 +4,19 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   subject(:order) { build :order }
   it { is_expected.to be_valid }
-  it 'カートから注文情報を生成されること' do
-    cart = build :cart
-    cart.items = Array.new(10){ build :cart_item }
-    cart.save!
-    order.cart = cart
-    order.copy_data_from_cart!
-    expect(order.total).to eq cart.total
-    expect(order.tax_amount).to eq cart.tax_amount
-    expect(order.delivery_fee).to eq cart.delivery_fee
-    expect(order.cache_on_delivery_fee).to eq cart.cache_on_delivery_fee
-  end
 
-  it '注文品目から小計を計算できる' do
-    cart = build :cart
-    cart.items << build( :cart_item, product: build(:product, price: 100), quantity: 5 )
-    cart.save!
-    order.cart = cart
-    order.valid?
-    expect(order.subtotal).to eq 500
+  describe 'カート情報の転記' do
+    it '初期化時にカートから注文情報を生成されること' do
+      cart = build :cart_with_user
+      cart.items << build(:cart_item)
+      # build では new の時になんの引数も渡さないらしいので素の new を使う
+      order = Order.new cart: cart
+      expect(order.total).to eq cart.total
+      expect(order.tax_amount).to eq cart.tax_amount
+      expect(order.delivery_fee).to eq cart.delivery_fee
+      expect(order.cache_on_delivery_fee).to eq cart.cache_on_delivery_fee
+      expect(order.subtotal).to eq cart.subtotal
+    end
   end
 
   describe '配達時間帯' do

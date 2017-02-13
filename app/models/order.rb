@@ -41,7 +41,8 @@ class Order < ApplicationRecord
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
   validates :destination_address, presence: true
 
-  after_save :empty_cart!
+  after_initialize :set_cart_data!, if: -> { new_record? && cart }
+  after_save :empty_cart!, if: -> { cart }
 
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
@@ -49,26 +50,22 @@ class Order < ApplicationRecord
     items.map(&:total).inject(:+)
   end
 
-  def copy_data_from_cart!
+  private
+
+  def set_cart_data!
     self.user = cart.user
     self.total = cart.total
     self.tax_amount = cart.tax_amount
     self.delivery_fee = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
-    self.items = cart.items.map { |ci|
-      oi = items.build(cart_item: ci)
-      oi.copy_data_from_cart_item!
+    self.destination_address = cart.user.address
+    self.destination_zip_code = cart.user.zip_code
+    self.destination_name = user.name
+    cart.items.each { |ci|
+      self.items.build(cart_item: ci)
     }
     self
   end
-
-  def set_default_destination!
-    self.destination_address = user.address
-    self.destination_zip_code = user.zip_code
-    self.destination_name = user.name
-  end
-
-  private
 
   def empty_cart!
     cart.empty!

@@ -26,11 +26,15 @@ class OrderItem < ApplicationRecord
   validates :product_price, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 
+  after_initialize :set_cart_item_data!, if: -> { new_record? && cart_item }
+
   def total
     product_price * quantity
   end
 
-  def copy_data_from_cart_item!
+  private
+
+  def set_cart_item_data!
     self.product = cart_item.product
     self.product_name = cart_item.product.name
     self.product_price = cart_item.product.price
