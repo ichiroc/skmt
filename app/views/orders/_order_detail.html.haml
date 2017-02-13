@@ -1,0 +1,30 @@
+%table.table
+  %thead
+    %tr
+      %th= t('activerecord.models.product')
+      %th= t('activerecord.attributes.product.price')
+      %th= t('activerecord.attributes.cart_item.quantity')
+      %th= t('.subtotal')
+
+  %tbody
+    = render order.items
+    %tr
+      %td{colspan: 2}
+      %td{align: :right}= "#{t('.subtotal')}"
+      %td{align: :right}= number_to_currency order.subtotal
+    %tr
+      %td{colspan: 2}
+      %td{align: :right}= "#{t('.delivery_fee')}"
+      %td{align: :right}= number_to_currency order.delivery_fee
+    %tr
+      %td{colspan: 2}
+      %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
+      %td{align: :right}= number_to_currency order.cache_on_delivery_fee
+    %tr
+      %td{colspan: 2}
+      %td{align: :right}= t('.tax')
+      %td{align: :right}= number_to_currency order.tax_amount
+    %tr
+      %td{colspan: 2}
+      %td{align: :right}= t('.total')
+      %td{align: :right}= number_to_currency order.total

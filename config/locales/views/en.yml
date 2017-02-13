@@ -8,3 +8,18 @@ en:
       cache_on_delivery_fee: COD fee
       cart_is_empty: The cart is empty. Enjoy your shopping!
       submit_order: Submit Order
+  orders:
+    show:
+      order_date_time: Order Date Time
+      destination_name: Destination Name
+      destination_zip_code: Destination Zip Code
+      destination_address: Destination Address
+    order_detail:
+      subtotal: Subtotal
+      total: Total
+      tax: Tax
+      delivery_fee: Delivery Fee
+      cache_on_delivery_fee: COD Fee
+      cart_is_empty:  The cart is empty. Enjoy your shopping!
+    new:
+      submit_order: Decide Order
