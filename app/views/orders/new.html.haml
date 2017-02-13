@@ -2,42 +2,52 @@
   .panel-heading
     %h1= t('activerecord.models.order')
   .panel-body
-    %table.table
-      %thead
-        %tr
-          %th= t('activerecord.models.product')
-          %th= t('activerecord.attributes.product.price')
-          %th= t('activerecord.attributes.cart_item.quantity')
-          %th= t('.subtotal')
+    .col-md-8
+      %h3= t('.order_details')
+      %table.table
+        %thead
+          %tr
+            %th= t('activerecord.models.product')
+            %th= t('activerecord.attributes.product.price')
+            %th= t('activerecord.attributes.cart_item.quantity')
+            %th= t('.subtotal')
 
-      %tbody
-        = render @order.items
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('.subtotal')}"
-          %td{align: :right}= number_to_currency @order.subtotal
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('.delivery_fee')}"
-          %td{align: :right}= number_to_currency @order.delivery_fee
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
-          %td{align: :right}= number_to_currency @order.cache_on_delivery_fee
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= t('.tax')
-          %td{align: :right}= number_to_currency @order.tax_amount
-        %tr
-          %td{colspan: 2}
-          %td{align: :right}= t('.total')
-          %td{align: :right}= number_to_currency @order.total
-    = simple_form_for @order do |f|
-      = f.error_notification
-      = f.input :destination_zip_code, required: :true
-      = f.input :destination_name
-      = f.input :destination_address
-      = f.input :remember_destination, as: :boolean
-      = f.input :delivery_date, as: :string, input_html: { class: 'datepicker'}, hint: '3営業日以降14営業日まで選択できます'
-      = f.input :delivery_time_slot, collection: Order.delivery_time_slots.keys
-      = f.submit t('.submit_order'), class: 'btn btn-primary'
+        %tbody
+          = render @order.items
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('.subtotal')}"
+            %td{align: :right}= number_to_currency @order.subtotal
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('.delivery_fee')}"
+            %td{align: :right}= number_to_currency @order.delivery_fee
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= "#{t('.cache_on_delivery_fee')}"
+            %td{align: :right}= number_to_currency @order.cache_on_delivery_fee
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= t('.tax')
+            %td{align: :right}= number_to_currency @order.tax_amount
+          %tr
+            %td{colspan: 2}
+            %td{align: :right}= t('.total')
+            %td{align: :right}= number_to_currency @order.total
+    .col-md-4
+      .panel.panel-info
+        .panel-heading= t('.total')
+        .panel-body
+          = number_to_currency @order.total
+      .panel.panel-primary
+        .panel-heading= t('.destination')
+        .panel-body
+          = simple_form_for @order do |f|
+            = f.error_notification
+            = f.input :destination_zip_code, required: :true
+            = f.input :destination_name
+            = f.input :destination_address
+            = f.input :remember_destination, as: :boolean
+            = f.input :delivery_date, as: :string, input_html: { class: 'datepicker'}, hint: '3営業日以降14営業日まで選択できます'
+            = f.input :delivery_time_slot, collection: Order.delivery_time_slots.keys
+            = f.submit t('.submit_order'), class: 'btn btn-primary'
