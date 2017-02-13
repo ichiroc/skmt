@@ -1,31 +1,27 @@
+# frozen_string_literal: true
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  include Pundit
   before_action :authenticate_user!
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
-  # GET /orders
-  # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = policy_scope(Order).page
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
   def show
   end
 
-  # GET /orders/new
   def new
-    @order = current_user.orders.build cart: find_cart
+    @order = authorize current_user.orders.build cart: find_cart
   end
 
-  # GET /orders/1/edit
   def edit
   end
 
-  # POST /orders
-  # POST /orders.json
   def create
-    @order = current_user.orders.build(order_params.merge(cart: find_cart))
+    @order = authorize current_user.orders.build(order_params.merge(cart: find_cart))
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -37,8 +33,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -51,8 +45,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
@@ -62,23 +54,22 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:user_id,
-                                    :total,
-                                    :tax_amount,
-                                    :delivery_fee,
-                                    :cache_on_delivery_fee,
-                                    :delivery_time_slot,
-                                    :delivery_date,
-                                    :destination_name,
-                                    :destination_zip_code,
-                                    :destination_address,
-                                    :remember_destination)
-    end
+  def set_order
+    @order = authorize Order.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:user_id,
+                                  :total,
+                                  :tax_amount,
+                                  :delivery_fee,
+                                  :cache_on_delivery_fee,
+                                  :delivery_time_slot,
+                                  :delivery_date,
+                                  :destination_name,
+                                  :destination_zip_code,
+                                  :destination_address,
+                                  :remember_destination)
+  end
 end
