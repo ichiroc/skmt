@@ -26,3 +26,4 @@
               = link_to t('helpers.links.edit'), edit_admin_product_path(product), class: 'btn btn-default'
             %td
               = link_to t('helpers.links.destroy'), admin_product_path(product), :method => :delete, data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+    = paginate @products

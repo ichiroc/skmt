@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: :show
 
   def index
-    @products = Product.where(status: :active).order(:sort_order).page params[:page]
+    @products = Product.where(status: :active).order(:sort_order).page(params[:page])
   end
 
   def show

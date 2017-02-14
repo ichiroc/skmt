@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @users = policy_scope User
+    @users = policy_scope(User).page(params[:page])
   end
 
   def show

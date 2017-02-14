@@ -8,7 +8,7 @@ class Admin::ProductsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @products = policy_scope(Product).order(:sort_order)
+    @products = policy_scope(Product).order(:sort_order).page(params[:page])
   end
 
   def show
