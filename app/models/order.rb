@@ -69,9 +69,6 @@ class Order < ApplicationRecord
     self.tax_amount            = cart.tax_amount
     self.delivery_fee          = cart.delivery_fee
     self.cache_on_delivery_fee = cart.cache_on_delivery_fee
-    self.destination_address   = cart.user.address  if destination_address.blank?
-    self.destination_zip_code  = cart.user.zip_code if destination_zip_code.blank?
-    self.destination_name      = user.name          if destination_name.blank?
     cart.items.each do |ci|
       self.items.build(cart_item: ci)
     end
