@@ -9,9 +9,9 @@
           .panel-body
             .row
               .col-md-5.text-right
-                %b= t('.order_date')
+                %b= t('.order_date_time')
               .col-md-7
-                %p= @order.created_at
+                %p= l @order.created_at
             .row
               .col-md-5.text-right
                 %b= t('.destination_name')

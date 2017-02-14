@@ -18,7 +18,7 @@
           %tr
             %td= link_to user.name, admin_user_path(user)
             %td= user.email
-            %td= user.confirmed_at
+            %td= l user.confirmed_at
             %td= user.zip_code
             %td= user.address
             %td= user.is_admin?
