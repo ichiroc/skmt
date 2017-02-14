@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if @user.is_admin?
+        scope.all
+      else
+        scope.none
+      end
     end
   end
 
