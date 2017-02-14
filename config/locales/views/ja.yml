@@ -7,6 +7,7 @@ ja:
       delivery_fee: 配達料
       cache_on_delivery_fee: 代引き手数料
       cart_is_empty: カートは空です。お買い物を楽しんでください！
+      proceed_to_order: ご注文へ進む
   orders:
     index:
       order_date_time: ご注文日時
@@ -17,6 +18,8 @@ ja:
       destination_name: 送付先氏名
       destination_zip_code: 送付先郵便番号
       destination_address: 送付先住所
+      delivery_date: 配達指定日
+      delivery_time_slot: 配達指定時間帯
     order_detail:
       subtotal: 小計
       total: 合計

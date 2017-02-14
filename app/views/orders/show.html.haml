@@ -28,3 +28,13 @@
                 %b= t('.destination_address')
               .col-md-7
                 %p= @order.destination_address
+            .row
+              .col-md-5.text-right
+                %b= t('.delivery_date')
+              .col-md-7
+                %p= l @order.delivery_date
+            .row
+              .col-md-5.text-right
+                %b= t('.delivery_time_slot')
+              .col-md-7
+                %p= @order.delivery_time_slot
