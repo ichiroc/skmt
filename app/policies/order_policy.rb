@@ -2,7 +2,7 @@ class OrderPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if @user.is_admin?
-        Order.all
+        scope.all
       else
         @user.orders
       end
