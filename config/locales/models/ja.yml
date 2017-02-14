@@ -40,3 +40,13 @@ ja:
         tax: 税
         delivery_fee: 配達料
         remember_destination: 送り先を保存する
+  enums:
+    order:
+      delivery_time_slot:
+        anytime: 指定なし
+        between_8_and_12: ８時から１２時
+        between_12_and_14: １２時から１４時
+        between_14_and_16: １４時から１６時
+        between_16_and_18: １６時から１８時
+        between_18_and_20: １８時から２０時
+        between_20_and_21: ２０時から２１時
