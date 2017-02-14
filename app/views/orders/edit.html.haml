@@ -1,7 +1,5 @@
-%h1 Editing order
-
-= render 'form'
-
-= link_to 'Show', @order
-\|
-= link_to 'Back', orders_path
+.panel.panel-default
+  .panel-heading
+    %h1= t('activerecord.models.order')
+  .panel-body
+    = render 'form'
