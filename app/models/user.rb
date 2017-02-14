@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   has_one :cart, required: true
   has_many :orders, dependent: :destroy
-  before_validation :build_cart, if: ->(u) { u.cart.blank? }
+  before_validation :build_cart, if: -> { cart.blank? }
 
   def is_admin= flag
     if flag == '1'
