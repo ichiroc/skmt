@@ -1,4 +1,7 @@
 en:
+  errors:
+    messages:
+      zip_code: Enter with 7 digit number
   brand: Sakura Market
   menu:
     shopping: Shopping

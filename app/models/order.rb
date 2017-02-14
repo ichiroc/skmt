@@ -39,7 +39,7 @@ class Order < ApplicationRecord
   validates :total, presence: true, numericality: { greater_than: 0 }
   validates :delivery_time_slot, presence: true
   validates :destination_name, presence: true
-  validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/ }
+  validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }
   validates :destination_address, presence: true
 
   after_initialize :set_cart_data!, if: -> { new_record? && cart }

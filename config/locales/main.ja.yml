@@ -1,4 +1,7 @@
 ja:
+  errors:
+    messages:
+      zip_code: ７桁の数字で入力してください
   brand: さくらマーケット
   menu:
     shopping: お買い物

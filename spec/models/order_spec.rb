@@ -81,15 +81,15 @@ RSpec.describe Order, type: :model do
     end
     context '6桁以下の場合' do
       let(:zip_code){ '123456' }
-      it { is_expected.to include t('errors.messages.invalid') }
+      it { is_expected.to include t('errors.messages.zip_code') }
     end
     context '8桁以上の場合' do
       let(:zip_code){ '12345678' }
-      it { is_expected.to include t('errors.messages.invalid') }
+      it { is_expected.to include t('errors.messages.zip_code') }
     end
     context '数字以外の文字がある場合' do
       let(:zip_code){ 'hogefoo' }
-      it { is_expected.to include t('errors.messages.invalid') }
+      it { is_expected.to include t('errors.messages.zip_code') }
     end
     context 'ハイフンが含まれている場合' do
       let(:zip_code){ '123-4567' }
