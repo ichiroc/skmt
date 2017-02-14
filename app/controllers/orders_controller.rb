@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @orders = policy_scope(Order).page
+    @orders = policy_scope(Order).page.includes(:items)
   end
 
   def show
