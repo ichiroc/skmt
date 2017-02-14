@@ -8,6 +8,10 @@ ja:
       cache_on_delivery_fee: 代引き手数料
       cart_is_empty: カートは空です。お買い物を楽しんでください！
   orders:
+    index:
+      order_date_time: ご注文日時
+      order_items: 注文内容
+      total: 合計
     show:
       order_date_time: ご注文日時
       destination_name: 送付先氏名

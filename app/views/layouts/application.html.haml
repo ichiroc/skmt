@@ -33,8 +33,9 @@
             %li= link_to "#{t('menu.cart')}( #{find_cart.items.count} )", cart_items_path
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
-              = render 'admin_menu' if current_user.is_admin?
+              %li= link_to "#{t('menu.orders')}", orders_path
               %li= link_to t('menu.account'), edit_user_registration_path
+              = render 'admin_menu' if current_user.is_admin?
               %li= link_to t('menu.logout'), destroy_user_session_path, method: :delete
             - else
               %li= link_to t('menu.login'), new_user_session_path

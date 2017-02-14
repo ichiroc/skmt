@@ -1,39 +1,19 @@
-%h1 Listing orders
+.panel.panel-default
+  .panel-heading
+    %h1= t('.orders')
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th= t('.order_date_time')
+          %th= t('.order_items')
+          %th= t('.total')
+          %th
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Total
-      %th Tax amount
-      %th Delivery fee
-      %th Cache on delivery fee
-      %th Delivery time zone
-      %th Delivery date
-      %th Destination name
-      %th Destination zip code
-      %th Destination address
-      %th
-      %th
-      %th
-
-  %tbody
-    - @orders.each do |order|
-      %tr
-        %td= order.user
-        %td= order.total
-        %td= order.tax_amount
-        %td= order.delivery_fee
-        %td= order.cache_on_delivery_fee
-        %td= order.delivery_time_slot
-        %td= order.delivery_date
-        %td= order.destination_name
-        %td= order.destination_zip_code
-        %td= order.destination_address
-        %td= link_to 'Show', order
-        %td= link_to 'Edit', edit_order_path(order)
-        %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Order', new_order_path
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td= l order.created_at
+            %td= order.items.map(&:product_name).join(',').truncate(70, separator: ' ')
+            %td= number_to_currency order.total
+            %td= link_to t('helpers.links.show'), order, class: 'btn btn-default'

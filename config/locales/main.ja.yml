@@ -3,6 +3,7 @@ ja:
   menu:
     shopping: お買い物
     cart: カート
+    orders: 注文履歴
     login: ログイン
     logout: ログアウト
     account: アカウント

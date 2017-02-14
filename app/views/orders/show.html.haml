@@ -1,6 +1,7 @@
 %p#notice= notice
 .panel.panel-default
   .panel-body
+    = link_to t('helpers.links.edit'), edit_order_path(@order), class: 'btn btn-default' if policy(@order).edit?
     .row
       .col-md-8
         = render partial: 'order_detail', locals: { order: @order }
@@ -27,4 +28,3 @@
                 %b= t('.destination_address')
               .col-md-7
                 %p= @order.destination_address
-    = link_to 'Edit', edit_order_path(@order)
