@@ -19,6 +19,7 @@ en:
       total: Total
       tax: Tax
       delivery_fee: Delivery Fee
+      discount: Discount
       cache_on_delivery_fee: COD Fee
       cart_is_empty:  The cart is empty. Enjoy your shopping!
     new:

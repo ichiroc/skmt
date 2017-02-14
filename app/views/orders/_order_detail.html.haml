@@ -24,6 +24,12 @@
       %td{colspan: 2}
       %td{align: :right}= t('.tax')
       %td{align: :right}= number_to_currency order.tax_amount
+    - initial_total = (order.subtotal + order.delivery_fee + order.cache_on_delivery_fee + order.tax_amount)
+    - if order.total != initial_total
+      %tr
+        %td{colspan: 2}
+        %td{align: :right}= t('.discount')
+        %td{align: :right}= number_to_currency( order.total - initial_total )
     %tr
       %td{colspan: 2}
       %td{align: :right}= t('.total')
