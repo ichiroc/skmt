@@ -1,4 +1,3 @@
-%p#notice= notice
 .panel.panel-default
   .panel-body
     = link_to t('helpers.links.edit'), edit_order_path(@order), class: 'btn btn-default' if policy(@order).edit?

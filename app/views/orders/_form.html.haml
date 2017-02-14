@@ -7,7 +7,7 @@
     = f.input :tax_amount
     = f.input :delivery_fee
     = f.input :cache_on_delivery_fee
-    = f.input :delivery_time_slot
+    = f.input :delivery_time_slot, collection: Order.delivery_time_slots.keys
     = f.input :delivery_date
     = f.input :destination_name
     = f.input :destination_zip_code
