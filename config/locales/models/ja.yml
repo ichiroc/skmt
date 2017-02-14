@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       product: 商品
       cart: カート
+      order: ご注文
     attributes:
       user:
         address: 住所
@@ -27,3 +28,15 @@ ja:
         image: 画像
       cart_item:
         quantity: 数量
+      order:
+        order_date_time: ご注文日時
+        destination_name: 送付先氏名
+        destination_zip_code: 送付先郵便番号
+        destination_address: 送付先住所
+        delivery_date: 配達指定日
+        delivery_time_slot: 配達指定時間帯
+        subtotal: 小計
+        total: 合計
+        tax: 税
+        delivery_fee: 配達料
+        remember_destination: 送り先を保存する

@@ -29,4 +29,6 @@ en:
       cache_on_delivery_fee: COD Fee
       cart_is_empty:  The cart is empty. Enjoy your shopping!
     new:
+      total: Total
+      destination: Destination
       submit_order: Decide Order

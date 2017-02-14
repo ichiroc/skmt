@@ -29,4 +29,6 @@ ja:
       cache_on_delivery_fee: 代引き手数料
       cart_is_empty: カートは空です。お買い物を楽しんでください！
     new:
+      total: 合計金額
+      destination: 送り先
       submit_order: 注文を確定する
