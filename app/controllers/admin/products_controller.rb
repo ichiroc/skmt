@@ -4,10 +4,11 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
   def index
-    @products = authorize Product.all.order(:sort_order)
+    @products = policy_scope(Product).order(:sort_order)
   end
 
   def show
