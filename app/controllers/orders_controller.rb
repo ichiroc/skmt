@@ -14,10 +14,8 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = authorize current_user.orders.build cart: find_cart
-    @order.destination_address   = current_user.address
-    @order.destination_zip_code  = current_user.zip_code
-    @order.destination_name      = current_user.name
+    @order = current_user.orders.build(cart: find_cart).with_default_destination
+    authorize @order
   end
 
   def edit

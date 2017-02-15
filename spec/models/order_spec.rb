@@ -19,6 +19,21 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe 'デフォルトの送り先を指定' do
+    it 'デフォルトの送り先が設定されること' do
+      order.with_default_destination
+      user = order.user
+      expect(order.destination_name).to eq user.name
+      expect(order.destination_zip_code).to eq user.zip_code
+      expect(order.destination_address).to eq user.address
+    end
+  end
+
+  describe '注文の確定' do
+    it 'カートを空にする'
+    it 'カートの品目から注文品目が作成される'
+  end
+
   describe '配達時間帯' do
     subject(:error_messsage){
       order.delivery_time_slot = delivery_time_slot

@@ -53,6 +53,13 @@ class Order < ApplicationRecord
     items.map(&:total).inject(:+)
   end
 
+  def with_default_destination
+    self.destination_address   = user.address
+    self.destination_zip_code  = user.zip_code
+    self.destination_name      = user.name
+    self
+  end
+
   private
 
   def save_destination_to_user!
