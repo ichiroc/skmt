@@ -7,7 +7,7 @@ FactoryGirl.define do
     delivery_fee { 500 * Random.rand(1..10) }
     cache_on_delivery_fee { [300, 400, 600, 1000].sample }
     delivery_time_slot { Random.rand 0..6 }
-    delivery_date Time.now
+    delivery_date { 5.business_days.from_now }
     destination_name { Faker::Name.name }
     destination_zip_code { Faker::Address.zip_code }
     destination_address { Faker::Address.full_address }

@@ -86,7 +86,6 @@ RSpec.describe Order, type: :model do
         expect(user.address).not_to eq order.destination_address
       end
     end
-
   end
 
   describe '配達氏名' do
