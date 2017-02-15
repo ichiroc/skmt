@@ -20,6 +20,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe 'デフォルトの送り先を指定' do
+
     it 'デフォルトの送り先が設定されること' do
       order.with_default_destination
       user = order.user
@@ -129,6 +130,14 @@ RSpec.describe Order, type: :model do
         expect(order.destination_zip_code).to eq '1234567'
       end
     end
+  end
+
+  describe '配達日時' do
+    it '3営業日未満の日付を指定したらエラー'
+    it '3営業日目の日付を指定したら保存できる'
+    it '14営業日の日付を指定したら保存できる'
+    it '14営業日以降の日付を指定したらエラー'
+    it '土日を指定したらエラー'
   end
 
   describe '配達先住所' do
