@@ -29,9 +29,26 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe '注文の確定' do
-    it 'カートを空にする'
-    it 'カートの品目から注文品目が作成される'
+  describe '注文の確定時' do
+    before :each do
+      @cart = create :cart_with_user
+      @user = @cart.user
+      cart_item = build(:cart_item)
+      @quantity = cart_item.quantity
+      @product_name = cart_item.product.name
+      @cart.items << cart_item
+      @order = @user.orders.build(cart: @cart).with_default_destination
+      @order.save!
+    end
+    it 'カートを空にする' do
+      expect(@cart.items.count).to eq 0
+    end
+
+    it 'カートの品目から注文品目が作成される' do
+      item = @order.items.first
+      expect(item.quantity).to eq @quantity
+      expect(item.product_name).to eq @product_name
+    end
   end
 
   describe '配達時間帯' do
