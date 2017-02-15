@@ -55,9 +55,12 @@ class User < ApplicationRecord
 
   def dont_delete_last_admin
     return unless is_admin?
-    if User.joins(:users_roles).joins(:roles).where('roles.name = ?', 'admin').count == 1
-      self.errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
-      throw :abort
-    end
+    number_of_admins = User.joins(:users_roles)
+                           .joins(:roles)
+                           .where('roles.name = ?', 'admin')
+                           .count
+    return if number_of_admins > 1
+    errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
+    throw :abort
   end
 end
