@@ -53,14 +53,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'bootstrap-datepicker-rails'
-gem 'business_time'
-gem 'carrierwave'
+gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
+gem 'business_time', '~> 0.7.6'
+gem 'carrierwave', '~> 1.0.0'
 gem 'devise', '~> 4.2.0'
-gem 'enum_help'
+gem 'enum_help', '~> 0.0.17'
 gem 'haml-rails', '~> 0.9.0'
 gem 'kaminari', '~> 1.0.1'
-gem 'mini_magick'
+gem 'mini_magick', '~> 4.6.0'
 gem 'pundit', github: 'elabs/pundit'
 gem 'rolify', '~> 5.1.0'
 gem 'simple_form', '~> 3.4.0'
@@ -81,11 +81,12 @@ group :development, :test do
   gem 'pry-doc', '~> 0.10.0'
   gem 'rspec-rails', '~> 3.5.2'
   gem 'selenium-webdriver', '~> 3.0.5'
-  gem 'terminal-notifier-guard'
+  gem 'simplecov', '~> 0.13.0', require: false
+  gem 'terminal-notifier-guard', '~> 1.7.0'
 end
 
+gem 'less-rails', '~> 2.8.0'
 gem 'therubyracer', '~> 0.12.3'
-gem 'less-rails'
 
 # 警告抑止のため
-gem 'sprockets', '3.6.3'
+gem 'sprockets', '~> 3.6.3'

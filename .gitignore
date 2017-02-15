@@ -122,3 +122,5 @@ flycheck_*.el
 # End of https://www.gitignore.io/api/rails,macos,emacs
 
 public/uploads
+
+coverage
