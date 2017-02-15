@@ -27,6 +27,24 @@ RSpec.describe User, type: :model do
       expect(user.is_admin?).to be_falsy
     end
 
-    it '最後の管理者は削除できないこと'
+    describe '管理者の削除' do
+      before :each do
+        @admin = create :admin
+      end
+      context '管理者が一人だけの場合' do
+        it '削除できないこと' do
+          @admin.destroy
+          expect( @admin.destroyed? ).to be_falsy
+          expect( @admin.errors[:base]).to include t('errors.messages.cant_delete_last_admin')
+        end
+      end
+      context '最後の管理者じゃない場合' do
+        it '削除できること' do
+          another_admin = create :admin, email: 'admin2@admin'
+          expect(another_admin.is_admin?).to be_truthy
+          expect(another_admin.destroy).to be_truthy
+        end
+      end
+    end
   end
 end

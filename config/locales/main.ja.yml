@@ -2,6 +2,7 @@ ja:
   errors:
     messages:
       zip_code: ７桁の数字で入力してください
+      cant_delete_last_admin: 最後の管理者は削除できません
   brand: さくらマーケット
   menu:
     shopping: お買い物

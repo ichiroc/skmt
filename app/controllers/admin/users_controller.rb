@@ -29,8 +29,14 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
+    if @user.errors.blank?
+      respond_to do |format|
+        format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to admin_users_url, alert: @user.errors[:base] }
+      end
     end
   end
 

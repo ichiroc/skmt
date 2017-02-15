@@ -39,13 +39,25 @@ class User < ApplicationRecord
 
   has_one :cart, required: true
   has_many :orders, dependent: :destroy
+  has_many :roles, through: :users_roles
   before_validation :build_cart, if: -> { cart.blank? }
+  before_destroy :dont_delete_last_admin
 
   def is_admin= flag
     if flag == '1'
       add_role :admin
     else
       remove_role :admin
+    end
+  end
+
+  private
+
+  def dont_delete_last_admin
+    return unless is_admin?
+    if User.joins(:users_roles).joins(:roles).where('roles.name = ?', 'admin').count == 1
+      self.errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
+      throw :abort
     end
   end
 end
