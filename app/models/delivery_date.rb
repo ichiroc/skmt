@@ -4,8 +4,10 @@ class DeliveryDate
   LATEST_DAYS = 14
   STRING_FORMAT = '%Y-%m-%d'
 
-  def self.valid? date
-    (earliest_date..latest_date).include? date
+  def self.valid?(arg)
+    date = arg.to_date
+    return false unless (earliest_date..latest_date).cover? date
+    !(excluded_dates.include? date)
   end
 
   def self.earliest_date

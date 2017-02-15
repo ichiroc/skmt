@@ -15,8 +15,24 @@ RSpec.describe DeliveryDate do
         expect(DeliveryDate.formatted_earliest_date).to eq '2017-02-06'
       end
 
+      it '2017/2/6 は Valid な日付であること' do
+        expect(DeliveryDate.valid?(Time.new(2017, 2, 6))).to be_truthy
+      end
+
+      it '2017/2/5 は Invvalid な日付であること' do
+        expect(DeliveryDate.valid?(Time.new(2017, 2, 5))).to be_falsy
+      end
+
       it '最遅配達日は2017/2/21(火)になること' do
         expect(DeliveryDate.formatted_latest_date).to eq '2017-02-21'
+      end
+
+      it '2017/2/21 は Valid な日付であること' do
+        expect(DeliveryDate.valid?(Time.new(2017, 2, 21))).to be_truthy
+      end
+
+      it '2017/2/22 は Invalid な日付であること' do
+        expect(DeliveryDate.valid?(Time.new(2017, 2, 22))).to be_falsy
       end
 
       it '配達可能期間中の土日は除外されること' do
