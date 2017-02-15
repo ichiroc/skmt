@@ -6,6 +6,6 @@ $(document).on 'turbolinks:load', (e)->
   $('.datepicker').datepicker
     language: 'ja'
     startDate: '<%= DeliveryDate.formatted_earliest_date %>'
-    endDate: '<%= DeliveryDate.formatted_latext_date %>'
+    endDate: '<%= DeliveryDate.formatted_latest_date %>'
     datesDisabled:
       <%= DeliveryDate.formatted_excluded_dates.to_json %>

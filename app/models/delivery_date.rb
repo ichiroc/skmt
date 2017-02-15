@@ -16,7 +16,7 @@ class DeliveryDate
     earliest_date.strftime STRING_FORMAT
   end
 
-  def self.formatted_latext_date
+  def self.formatted_latest_date
     latest_date.strftime STRING_FORMAT
   end
 
