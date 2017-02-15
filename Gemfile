@@ -65,6 +65,7 @@ gem 'pundit', github: 'elabs/pundit'
 gem 'rolify', '~> 5.1.0'
 gem 'simple_form', '~> 3.4.0'
 gem 'twitter-bootstrap-rails', '~> 3.2.2'
+
 group :development, :test do
   gem 'annotate', '~> 2.7.1'
   gem 'better_errors', '~> 2.1.1'
@@ -90,3 +91,8 @@ gem 'therubyracer', '~> 0.12.3'
 
 # 警告抑止のため
 gem 'sprockets', '~> 3.6.3'
+
+# ジェネレータに影響を与えないように test に限定
+group :test do
+  gem 'timecop'
+end
