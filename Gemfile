@@ -26,7 +26,6 @@ gem 'rolify', '~> 5.1.0'
 gem 'sass-rails', '~> 5.0.6'
 gem 'simple_form', '~> 3.4.0'
 gem 'sprockets', '~> 3.6.3' # Use 3.6.x for avoid warnnings.
-gem 'sqlite3', '~> 1.3.13'
 gem 'therubyracer', '~> 0.12.3'
 gem 'turbolinks', '~> 5.0.1'
 gem 'twitter-bootstrap-rails', '~> 3.2.2'
@@ -63,6 +62,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'selenium-webdriver', '~> 3.0.5'
   gem 'simplecov', '~> 0.13.0', require: false
+  gem 'sqlite3', '~> 1.3.13'
   gem 'terminal-notifier-guard', '~> 1.7.0'
 end
 
