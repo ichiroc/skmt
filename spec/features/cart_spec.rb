@@ -20,7 +20,7 @@ RSpec.describe Cart do
       user.reload
       expect(user.cart.items.count).to eq 0
       sign_in user
-      click_link "#{t('menu.cart_link')}( 1 )"
+      click_link "#{t('menu.cart')}( 1 )"
       expect(page).to have_content @product.name
       user.reload
       expect(user.cart.items.count).to eq 1

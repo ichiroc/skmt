@@ -29,7 +29,7 @@ RSpec.describe :admin_user do
       end
 
       scenario '編集できる' do
-        click_link t('menu.admin.users_link')
+        click_link t('menu.manage_users')
         first(:link, t('helpers.links.edit')).click
         fill_in t('activerecord.attributes.user.name'), with: 'ほげ'
         click_button t('helpers.submit.update')

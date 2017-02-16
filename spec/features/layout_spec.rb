@@ -6,11 +6,11 @@ RSpec.describe :layout do
     scenario '管理者メニューを表示する' do
       admin = create :admin
       visit root_path
-      expect(page).not_to have_content t('menu.admin.products_link')
-      expect(page).not_to have_content t('menu.admin.users_link')
+      expect(page).not_to have_content t('menu.manage_products')
+      expect(page).not_to have_content t('menu.manage_users')
       sign_in admin
-      expect(page).to have_content t('menu.admin.products_link')
-      expect(page).to have_content t('menu.admin.users_link')
+      expect(page).to have_content t('menu.manage_products')
+      expect(page).to have_content t('menu.manage_users')
     end
   end
 end
