@@ -200,6 +200,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -369,6 +370,7 @@ DEPENDENCIES
   letter_opener (~> 1.4.1)
   listen (~> 3.0.8)
   mini_magick (~> 4.6.0)
+  pg
   pry-byebug (~> 3.4.2)
   pry-doc (~> 0.10.0)
   puma (~> 3.6.2)
