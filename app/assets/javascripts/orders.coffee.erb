@@ -3,9 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', (e)->
+  $deliveryDate = $('#order_delivery_date')
   $('.datepicker').datepicker
     language: 'ja'
-    startDate: '<%= DeliveryDate.formatted_earliest_date %>'
-    endDate: '<%= DeliveryDate.formatted_latest_date %>'
+    startDate: $deliveryDate.data('earliest-date')
+    endDate: $deliveryDate.data('latest-date')
     datesDisabled:
-      <%= DeliveryDate.formatted_excluded_dates.to_json %>
+      $deliveryDate.data('excluded-dates')

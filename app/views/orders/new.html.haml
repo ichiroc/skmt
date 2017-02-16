@@ -19,6 +19,6 @@
             = f.input :destination_name
             = f.input :destination_address
             = f.input :remember_destination, as: :boolean
-            = f.input :delivery_date, as: :string, input_html: { class: 'datepicker'}, hint: '3営業日以降14営業日まで選択できます'
+            = f.input :delivery_date, as: :string, input_html: { class: 'datepicker', data: { earliest_date: DeliveryDate.formatted_earliest_date, latest_date: DeliveryDate.formatted_latest_date, excluded_dates: DeliveryDate.excluded_dates}}, hint: '3営業日以降14営業日まで選択できます'
             = f.input :delivery_time_slot, Order.delivery_time_slots
             = f.submit t('.submit_order'), class: 'btn btn-primary'
