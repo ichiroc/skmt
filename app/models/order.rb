@@ -28,6 +28,7 @@ class Order < ApplicationRecord
   attr_accessor :remember_destination
   belongs_to :user
   has_many :items, class_name: OrderItem, dependent: :destroy
+
   enum delivery_time_slot: { anytime:   0,
                              between_8_and_12:  1,
                              between_12_and_14: 2,
@@ -41,15 +42,12 @@ class Order < ApplicationRecord
   validates :destination_name, presence: true
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }
   validates :destination_address, presence: true
-
   validates_with DeliveryDateValidator, on: :create
 
   after_initialize :set_cart_data!, if: -> { new_record? && cart }
-
-  before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
-
-  before_save :save_destination_to_user!, if: -> { remember_destination }
   after_save :empty_cart!, if: -> { cart }
+  before_save :save_destination_to_user!, if: -> { remember_destination }
+  before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def subtotal
     items.map(&:total).inject(:+)
@@ -65,9 +63,9 @@ class Order < ApplicationRecord
   private
 
   def save_destination_to_user!
-    user.name = destination_name
+    user.name     = destination_name
     user.zip_code = destination_zip_code
-    user.address = destination_address
+    user.address  = destination_address
     user.save!
     self
   end

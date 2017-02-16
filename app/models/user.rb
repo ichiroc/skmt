@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :roles, through: :users_roles
   before_validation :build_cart, if: -> { cart.blank? }
   before_destroy :dont_delete_last_admin
+  before_validation :format_zip_code, unless: -> { zip_code.blank? }
 
   def is_admin= flag
     if flag == '1'
@@ -62,5 +63,9 @@ class User < ApplicationRecord
     return if number_of_admins > 1
     errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
     throw :abort
+  end
+
+  def format_zip_code
+    self.zip_code = zip_code.delete('-').strip
   end
 end
