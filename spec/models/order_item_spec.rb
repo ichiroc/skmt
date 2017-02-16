@@ -15,25 +15,26 @@ RSpec.describe OrderItem, type: :model do
   describe '注文品目情報' do
     subject(:order_item) { build :order_item, cart_item: cart_item }
 
-    context 'カート品目と関連付けがあれば' do
+    context '初期化時にカート品目と関連付けがある場合' do
       let(:cart_item) { build :cart_item }
-      it 'バリデーション前にカート品目の情報が複製される' do
-        order_item.valid?
+      it 'カート品目の情報が複製される' do
+        order = build :order
+        order_item = order.items.build cart_item: cart_item
+        order_item.save!
         cart_item = order_item.cart_item
         expect(order_item.product_price).to eq cart_item.product.price
         expect(order_item.product_name).to eq cart_item.product.name
         expect(order_item.quantity).to eq order_item.quantity
       end
     end
-    context 'カート品目と関連付けがなければ' do
+    context '初期化時にカート品目と関連付けがなければ' do
       let(:cart_item) { nil }
-      it 'バリデーション後も独自の値を持つ' do
+      it '独自の値を持つ' do
+        order_item = build :order_item
         order_item.product_name  = name     = 'hoge'
         order_item.product_price = price    = 100
         order_item.quantity      = quantity = 10
-
-        order_item.valid?
-
+        order_item.save!
         expect(order_item.product_price).to eq price
         expect(order_item.product_name).to eq name
         expect(order_item.quantity).to eq quantity
