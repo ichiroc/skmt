@@ -42,7 +42,7 @@ class Order < ApplicationRecord
   validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }
   validates :destination_address, presence: true
 
-  validates_with ::DeliveryDateValidator, on: :create
+  validates_with DeliveryDateValidator, on: :create
 
   after_initialize :set_cart_data!, if: -> { new_record? && cart }
 
