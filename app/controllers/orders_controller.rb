@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order = authorize current_user.orders.build(order_params.merge(cart: find_cart))
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: t('orders.show.thank_you')}
       else
         format.html { render :new }
       end

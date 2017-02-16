@@ -15,7 +15,7 @@
         .panel-body
           = simple_form_for @order do |f|
             = f.error_notification
-            = f.input :destination_zip_code, input_html: { maxlength: 7 }
+            = f.input :destination_zip_code, input_html: { maxlength: 8 }
             = f.input :destination_name
             = f.input :destination_address
             = f.input :remember_destination, as: :boolean

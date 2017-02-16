@@ -20,6 +20,7 @@ ja:
       destination_address: 送付先住所
       delivery_date: 配達指定日
       delivery_time_slot: 配達指定時間帯
+      thank_you: ご注文ありがとうございます！
     order_detail:
       subtotal: 小計
       total: 合計

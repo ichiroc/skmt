@@ -20,6 +20,7 @@ en:
       destination_address: Destination Address
       delivery_date: Deliery Date
       delivery_time_slot: Delivery Time Slot
+      thank_you: Thank you for your order!
     order_detail:
       subtotal: Subtotal
       total: Total
