@@ -1,4 +1,10 @@
 en:
+  users:
+    registrations:
+      edit:
+        required: Required
+        change_password: Change Password
+        destination: Destination
   cart_items:
     index:
       subtotal: Subtotal

@@ -1,4 +1,10 @@
 ja:
+  users:
+    registrations:
+      edit:
+        required: 必須
+        change_password: パスワード変更
+        destination: 送付先
   cart_items:
     index:
       subtotal: 小計
