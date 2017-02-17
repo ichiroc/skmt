@@ -2,7 +2,7 @@
   .panel-body
     .row
       .col-md-5
-        %p.text-center= image_tag @product.image.url unless @product.image.blank?
+        %p.text-center= product_image_tag @product.image
       .col-md-7
         .row
           %p
