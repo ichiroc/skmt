@@ -17,6 +17,6 @@
       = @product.sort_order
     %p
       %b Image:
-      = product_image_tag @product
+      = product_image_tag @product.image
 
     = link_to t('helpers.links.edit'), edit_admin_product_path(@product), class: 'btn btn-default'
