@@ -5,9 +5,9 @@
     %table.table
       %thead
         %tr
-          %th= t('activerecord.attributes.user.name')
           %th= t('activerecord.attributes.user.email')
           %th= t('activerecord.attributes.user.email_confirmed_at')
+          %th= t('activerecord.attributes.user.name')
           %th= t('activerecord.attributes.user.zip_code')
           %th= t('activerecord.attributes.user.address')
           %th= t('activerecord.attributes.user.is_admin')
@@ -16,9 +16,9 @@
       %tbody
         - @users.each do |user|
           %tr
-            %td= link_to user.name, admin_user_path(user)
-            %td= user.email
+            %td= link_to user.email, admin_user_path(user)
             %td= l(user.confirmed_at) if user.confirmed_at
+            %td= user.name
             %td= user.zip_code
             %td= user.address
             %td= user.is_admin?
