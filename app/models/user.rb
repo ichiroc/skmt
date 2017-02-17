@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_one :cart, required: true, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :roles, through: :users_roles
+  validates :zip_code, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }, unless: -> { zip_code.blank? }
   before_validation :build_cart, if: -> { cart.blank? }
   before_destroy :dont_delete_last_admin
   before_validation :format_zip_code, unless: -> { zip_code.blank? }
