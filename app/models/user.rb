@@ -37,7 +37,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  has_one :cart, required: true
+  has_one :cart, required: true, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :roles, through: :users_roles
   before_validation :build_cart, if: -> { cart.blank? }
