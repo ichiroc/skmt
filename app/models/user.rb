@@ -17,9 +17,9 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  name                   :string
-#  zip_code               :string
-#  address                :string
+#  destination_name       :string
+#  destination_zip_code   :string
+#  destination_address    :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -40,10 +40,10 @@ class User < ApplicationRecord
   has_one :cart, required: true, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :roles, through: :users_roles
-  validates :zip_code, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }, unless: -> { zip_code.blank? }
+  validates :destination_zip_code, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.destination_zip_code') }, unless: -> { destination_zip_code.blank? }
   before_validation :build_cart, if: -> { cart.blank? }
   before_destroy :dont_delete_last_admin
-  before_validation :format_zip_code, unless: -> { zip_code.blank? }
+  before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def is_admin= flag
     if flag == '1'
@@ -67,6 +67,6 @@ class User < ApplicationRecord
   end
 
   def format_zip_code
-    self.zip_code = zip_code.delete('-').strip
+    self.destination_zip_code = destination_zip_code.delete('-').strip
   end
 end

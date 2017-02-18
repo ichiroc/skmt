@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    name { Faker::Name.name }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
-    zip_code { Faker::Address.zip_code }
-    address { Faker::Address.full_address }
+    destination_name { Faker::Name.name }
+    destination_zip_code { Faker::Address.zip_code }
+    destination_address { Faker::Address.full_address }
 
     after :build do |user|
       user.skip_confirmation!

@@ -2,12 +2,12 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
+    = f.input :destination_name
     = f.input :email
     = f.input :password
     = f.input :password_confirmation
-    = f.input :zip_code
-    = f.input :address
+    = f.input :destination_zip_code
+    = f.input :destination_address
     = f.input :is_admin?, as: :boolean , label: '管理者'
   .form-actions
     = f.button :submit

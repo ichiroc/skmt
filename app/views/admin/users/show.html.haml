@@ -1,20 +1,20 @@
 .panel.panel-default
   .panel-body
     %p
-      %b Name:
-      = @user.name
-    %p
       %b Email:
       = @user.email
     %p
       %b Email:
       = l(@user.confirmed_at) if @user.confirmed_at
     %p
+      %b Name:
+      = @user.destination_name
+    %p
       %b Zip Code:
-      = @user.zip_code
+      = @user.destination_zip_code
     %p
       %b Address:
-      = @user.address
+      = @user.destination_address
     %p
       %b Admin:
       = @user.is_admin?

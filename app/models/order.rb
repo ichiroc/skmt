@@ -10,7 +10,7 @@
 #  tax_amount            :integer
 #  delivery_fee          :integer
 #  cache_on_delivery_fee :integer
-#  delivery_time_slot    :integer          default("unspecified")
+#  delivery_time_slot    :integer          default("anytime")
 #  delivery_date         :date
 #  destination_name      :string
 #  destination_zip_code  :string
@@ -40,7 +40,7 @@ class Order < ApplicationRecord
   validates :total, presence: true, numericality: { greater_than: 0 }
   validates :delivery_time_slot, presence: true
   validates :destination_name, presence: true
-  validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.zip_code') }
+  validates :destination_zip_code, presence: true, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.destination_zip_code') }
   validates :destination_address, presence: true
   validates_with DeliveryDateValidator, on: :create
 
@@ -54,18 +54,18 @@ class Order < ApplicationRecord
   end
 
   def with_default_destination
-    self.destination_address   = user.address
-    self.destination_zip_code  = user.zip_code
-    self.destination_name      = user.name
+    self.destination_address   = user.destination_address
+    self.destination_zip_code  = user.destination_zip_code
+    self.destination_name      = user.destination_name
     self
   end
 
   private
 
   def save_destination_to_user!
-    user.name     = destination_name
-    user.zip_code = destination_zip_code
-    user.address  = destination_address
+    user.destination_name     = destination_name
+    user.destination_zip_code = destination_zip_code
+    user.destination_address  = destination_address
     user.save!
     self
   end

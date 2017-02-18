@@ -7,18 +7,18 @@ ja:
       order: ご注文
     attributes:
       user:
-        address: 住所
         current_password: 現在のパスワード
         email: メールアドレス
         email_confirmed_at: メールアドレス確認日時
         is_admin: 管理者
-        name: 名前
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         reset_password_token:
         unlock_token:
-        zip_code: 郵便番号
+        destination_name: 名前
+        destination_zip_code: 郵便番号
+        destination_address: 住所
       product:
         name: 商品名
         description: 説明

@@ -1,7 +1,7 @@
 ja:
   errors:
     messages:
-      zip_code: ７桁の数字で入力してください
+      destination_zip_code: ７桁の数字で入力してください
       cant_delete_last_admin: 最後の管理者は削除できません
       invalid_delivery_date: 配達日は３営業日から１４営業日までの間指定できます
   brand: さくらマーケット

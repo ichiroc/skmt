@@ -7,7 +7,7 @@ feature '注文を確定する' do
     @user = create :user
     visit root_path
   end
-  scenario '商品をカートに追加して注文を確定する' do
+  scenario '商品をカートに追加して、住所を入力して注文を確定する' do
     sign_in @user
     add_to_cart @product
     proceed_to_order
@@ -22,9 +22,9 @@ feature '注文を確定する' do
   end
 
   scenario 'ユーザーに既に住所などが登録されている場合は、登録を省略して注文を確定できる' do
-    @user.zip_code = Faker::Address.zip_code
-    @user.address = Faker::Address.full_address
-    @user.name = Faker::Name.name
+    @user.destination_zip_code = Faker::Address.zip_code
+    @user.destination_address = Faker::Address.full_address
+    @user.destination_name = Faker::Name.name
     @user.save!
     sign_in @user
     add_to_cart @product

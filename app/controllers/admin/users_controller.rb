@@ -47,7 +47,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    permitted_attr = [:name, :email, :zip_code, :address, :is_admin]
+    permitted_attr = [:destination_name, :email, :destination_zip_code, :destination_address, :is_admin]
     unless params[:user][:password].blank?
       permitted_attr << :password
       permitted_attr << :password_confirmation
