@@ -15,14 +15,14 @@ class Admin::ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = authorize Product.new
   end
 
   def edit
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = authorize Product.new(product_params)
 
     respond_to do |format|
       if @product.save
