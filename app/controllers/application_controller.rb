@@ -1,10 +1,19 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_locale
 
   helper_method :find_cart
 
+  def default_url_options options = {}
+    { locale: I18n.locale }.merge options
+  end
+
   private
+
+  def set_locale
+    I18n.locale = params[:locale]
+  end
 
   def find_cart
     if user_signed_in?
