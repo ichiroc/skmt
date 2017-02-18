@@ -33,5 +33,29 @@ feature '注文を確定する' do
     expect(page).to have_content(t('orders.show.thank_you'))
   end
 
-  scenario '商品をカートに追加して住所を入力してユーザー情報に保存して注文を確定する'
+  scenario '商品をカートに追加して住所を入力してユーザー情報に保存して注文を確定する' do
+    zip_code = '1234567'
+    address = 'hogehogehoge'
+    name = 'fugafuga'
+
+    sign_in @user
+    add_to_cart @product
+    proceed_to_checkout
+
+    fill_in t('activerecord.attributes.order.destination_zip_code'),
+            with: zip_code
+    fill_in t('activerecord.attributes.order.destination_address'),
+            with: address
+    fill_in t('activerecord.attributes.order.destination_name'),
+            with: name
+    check t('activerecord.attributes.order.remember_destination')
+
+    click_on t('orders.new.submit_order')
+
+    expect(page).to have_content(t('orders.show.thank_you'))
+    @user.reload
+    expect(@user.destination_zip_code).to eq zip_code
+    expect(@user.destination_address).to eq address
+    expect(@user.destination_name).to eq name
+  end
 end
