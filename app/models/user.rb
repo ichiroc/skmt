@@ -31,8 +31,7 @@
 
 class User < ApplicationRecord
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  include ZipCodeFormattable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
@@ -64,9 +63,5 @@ class User < ApplicationRecord
     return if number_of_admins > 1
     errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
     throw :abort
-  end
-
-  def format_zip_code
-    self.destination_zip_code = destination_zip_code.delete('-').strip
   end
 end

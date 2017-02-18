@@ -24,6 +24,7 @@
 #
 
 class Order < ApplicationRecord
+  include ZipCodeFormattable
   attr_accessor :cart
   attr_accessor :remember_destination
   belongs_to :user
@@ -84,9 +85,5 @@ class Order < ApplicationRecord
 
   def empty_cart!
     cart.empty!
-  end
-
-  def format_zip_code
-    self.destination_zip_code = destination_zip_code.delete('-').strip
   end
 end
