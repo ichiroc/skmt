@@ -10,7 +10,7 @@ feature '注文を確定する' do
   scenario '商品をカートに追加して、住所を入力して注文を確定する' do
     sign_in @user
     add_to_cart @product
-    proceed_to_order
+    proceed_to_checkout
     fill_in t('activerecord.attributes.order.destination_zip_code'),
             with: Faker::Address.zip_code
     fill_in t('activerecord.attributes.order.destination_address'),
@@ -28,8 +28,10 @@ feature '注文を確定する' do
     @user.save!
     sign_in @user
     add_to_cart @product
-    proceed_to_order
+    proceed_to_checkout
     click_on t('orders.new.submit_order')
     expect(page).to have_content(t('orders.show.thank_you'))
   end
+
+  scenario '商品をカートに追加して住所を入力してユーザー情報に保存して注文を確定する'
 end

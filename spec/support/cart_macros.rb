@@ -4,7 +4,7 @@ module CartMacros
     click_link 'Add to cart'
   end
 
-  def proceed_to_order
+  def proceed_to_checkout
     click_on t('menu.cart')
     click_on 'Proceed To Checkout'
   end
