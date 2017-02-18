@@ -19,7 +19,7 @@
             %td
               .col-md-5= product_image_tag product.image.thumb, width: '100%'
               .col-md-5= link_to product.name, admin_product_path(product)
-            %td= product.description
+            %td= product.description.truncate(70, separator: ' ')
             %td= product.sort_order
             %td= product.status
             %td
