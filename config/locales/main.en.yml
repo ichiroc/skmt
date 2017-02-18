@@ -2,6 +2,9 @@ en:
   errors:
     messages:
       destination_zip_code: Enter with 7 digit number
+      cant_delete_last_admin: You can not delete last admin user.
+      invalid_delivery_date: You can select delivery date between 3 business days and 14 business days
+      not_permitted_operation: The operation is not permitted
   brand: Sakura Market
   menu:
     shopping: Shopping

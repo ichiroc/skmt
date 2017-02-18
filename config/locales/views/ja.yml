@@ -39,3 +39,7 @@ ja:
       total: 合計金額
       destination: 送り先
       submit_order: 注文を確定する
+  admin:
+    products:
+      index:
+        new_product: 商品を登録する

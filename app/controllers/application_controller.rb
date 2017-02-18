@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def not_permitted
-    redirect_to root_url, alert: 'この操作は許可されていません'
+    redirect_to root_url, alert: t('errors.messages.not_permitted_operation')
   end
 end

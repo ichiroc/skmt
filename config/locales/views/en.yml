@@ -39,3 +39,7 @@ en:
       total: Total
       destination: Destination
       submit_order: Decide Order
+  admin:
+    products:
+      index:
+        new_product: New Product
