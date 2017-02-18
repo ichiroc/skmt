@@ -5,6 +5,9 @@ en:
         required: Required
         change_password: Change Password
         destination: Destination
+  products:
+    show:
+      add_to_cart: Add To Cart
   cart_items:
     index:
       subtotal: Subtotal
@@ -13,7 +16,7 @@ en:
       delivery_fee: Delivery fee
       cache_on_delivery_fee: COD fee
       cart_is_empty: The cart is empty. Enjoy your shopping!
-      proceed_to_order: Proceed To Order
+      proceed_to_checkout: Proceed To Checkout
   orders:
     index:
       order_date_time: Order Date Time
