@@ -133,11 +133,79 @@ RSpec.describe Order, type: :model do
   end
 
   describe '配達日時' do
-    it '3営業日未満の日付を指定したらエラー'
-    it '3営業日目の日付を指定したら保存できる'
-    it '14営業日の日付を指定したら保存できる'
-    it '14営業日以降の日付を指定したらエラー'
-    it '土日を指定したらエラー'
+    subject(:order){ build :order, delivery_date: delivery_date }
+    let(:delivery_date) { nil }
+    before :each do
+      Timecop.travel(2017, 2, 1)
+    end
+    after :each do
+      Timecop.return
+    end
+    context '3営業日未満の日付を指定した場合' do
+      let(:delivery_date) { Time.new 2017, 2, 3 }
+      it 'エラーになる' do
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+      end
+    end
+
+    context '3営業日目の日付を指定した場合' do
+      let(:delivery_date) { Time.new 2017, 2, 6 }
+      it '保存できる' do
+        expect(order).to be_valid
+        expect(order.errors[:delivery_date]).to be_blank
+      end
+    end
+
+    context  '14営業日目の日付を指定した場合' do
+      let(:delivery_date) { Time.new 2017, 2, 21 }
+      it '保存できる' do
+        expect(order).to be_valid
+        expect(order.errors[:delivery_date]).to be_blank
+      end
+    end
+
+    context '14営業日以降の日付を指定したらエラー' do
+      let(:delivery_date) { Time.new 2017, 2, 22 }
+      it '保存できる' do
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+      end
+    end
+    context '土日を指定した場合' do
+      it 'エラーになる' do
+        order.delivery_date = Time.new(2017, 2, 4)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+        order.delivery_date = Time.new(2017, 2, 5)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+        order.delivery_date = Time.new(2017, 2, 11)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+        order.delivery_date = Time.new(2017, 2, 12)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+        order.delivery_date = Time.new(2017, 2, 18)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+        order.delivery_date = Time.new(2017, 2, 19)
+        expect(order).not_to be_valid
+        expect(order.errors[:delivery_date]).to include t('errors.messages.invalid_delivery_date')
+      end
+    end
+
+    context '新規作成時以外の更新の場合' do
+      it '自由に更新できる' do
+        order.save!
+        order.delivery_date = Time.new(2017, 2, 3)
+        expect(order).to be_valid
+        order.delivery_date = Time.new(2017, 2, 4)
+        expect(order).to be_valid
+        order.delivery_date = Time.new(2017, 2, 22)
+        expect(order).to be_valid
+      end
+    end
   end
 
   describe '配達先住所' do
