@@ -30,8 +30,8 @@
 #
 
 class User < ApplicationRecord
-  rolify
   include ZipCodeFormattable
+  rolify
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   has_one :cart, required: true, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :roles, through: :users_roles
-  validates :destination_zip_code, format: { with: /\A\d{7}\Z/, message: I18n.t('errors.messages.destination_zip_code') }, unless: -> { destination_zip_code.blank? }
+  validates_with ZipCodeFormatValidator
   before_validation :build_cart, if: -> { cart.blank? }
   before_destroy :dont_delete_last_admin
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }

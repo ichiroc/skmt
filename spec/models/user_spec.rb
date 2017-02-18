@@ -37,6 +37,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:destination_zip_code]).to include t('errors.messages.destination_zip_code')
     end
+
+    it '適切な形式の場合は保存できること' do
+      user.destination_zip_code = '1234567'
+      user.valid?
+      expect(user.errors[:destination_zip_code]).to be_blank
+    end
   end
 
   it 'is_admin= "1" でadminロールを設定できること' do
