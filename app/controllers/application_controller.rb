@@ -25,7 +25,10 @@ class ApplicationController < ActionController::Base
   end
 
   def session_cart
-    return Cart.find session[:cart_id] if Cart.exists? session[:cart_id]
+    if Cart.exists? session[:cart_id]
+      cart = Cart.find session[:cart_id]
+      return cart if Cart.user.blank?
+    end
     cart = Cart.create
     session[:cart_id] = cart.id
     cart
