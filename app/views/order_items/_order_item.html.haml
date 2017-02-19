@@ -1,7 +1,7 @@
 %tr
   %td
     .col-md-5
-      = product_image_tag(order_item.product.image.thumb)
+      = product_image_tag(order_item.product.image.thumb, width: '100%')
     .col-md-7
       = link_to order_item.product.name, product_path(order_item.product)
   %td
