@@ -19,10 +19,12 @@ ja:
       proceed_to_checkout: ご注文へ進む
   orders:
     index:
+      order_histories: ご注文履歴
       order_date_time: ご注文日時
       order_items: 注文内容
       total: 合計
     show:
+      order_detail: ご注文詳細
       order_date_time: ご注文日時
       destination_name: 送付先氏名
       destination_zip_code: 送付先郵便番号

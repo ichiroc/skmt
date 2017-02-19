@@ -1,4 +1,6 @@
 .panel.panel-default
+  .panel-heading
+    %h1= t('.order_detail')
   .panel-body
     = link_to t('helpers.links.edit'), edit_order_path(@order), class: 'btn btn-default' if policy(@order).edit?
     .row

@@ -19,10 +19,12 @@ en:
       proceed_to_checkout: Proceed To Checkout
   orders:
     index:
+      order_histories: Order Histroies
       order_date_time: Order Date Time
       order_items: Order Items
       total: Total
     show:
+      order_detail: Order Detail
       order_date_time: Order Date Time
       destination_name: Destination Name
       destination_zip_code: Destination Zip Code
