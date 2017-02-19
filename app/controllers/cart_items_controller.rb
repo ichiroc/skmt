@@ -1,7 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
 class CartItemsController < ApplicationController
-  include Pundit
   before_action :set_cart_item, only: [:update, :destroy]
   after_action :verify_authorized, except: :index
 

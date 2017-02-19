@@ -5,6 +5,11 @@ class ProductPolicy < ApplicationPolicy
     end
   end
 
+  def manage?
+    return false if @user.blank?
+    @user.is_admin?
+  end
+
   def index?
     true
   end
