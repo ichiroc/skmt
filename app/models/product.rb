@@ -22,4 +22,5 @@ class Product < ApplicationRecord
   validates :name, presence: true
   enum status: { active: 0, hidden: 1 }
   paginates_per 10
+  scope :sorted, -> { order(:sort_order) }
 end

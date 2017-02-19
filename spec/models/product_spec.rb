@@ -34,7 +34,12 @@ RSpec.describe Product, type: :model do
       expect(product.errors[:sort_order]).to include t('errors.messages.greater_than_or_equal_to', count: 0)
     end
 
-    it 'デフォルトは表示順通りの順番が返ってくること'
+    it '表示順通りの順番が返ってくること' do
+      p1 = create :product, sort_order: 10
+      p2 = create :product, sort_order: 20
+      p3 = create :product, sort_order: 30
+      expect(Product.sorted).to eq [p1, p2, p3]
+    end
   end
 
   it '名前は必須であること' do
