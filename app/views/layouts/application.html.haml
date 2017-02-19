@@ -45,5 +45,9 @@
         .col-lg-12
           = bootstrap_flash
           = yield
-      %footer
+      %footer.text-center
+        %ul.list-inline
+          Languages
+          - I18n.available_locales.each do |locale|
+            %li= link_to locale, locale: locale
         %p &copy; Company 2017
