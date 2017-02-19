@@ -20,6 +20,10 @@ class CartItem < ApplicationRecord
   belongs_to :product
   validates :quantity, numericality: { greater_than: 0 }
 
+  delegate :name, to: :product
+  delegate :price, to: :product
+  delegate :image, to: :product
+
   def total
     product.price * quantity
   end
