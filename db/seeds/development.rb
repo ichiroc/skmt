@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-u = User.new(name: 'Admin', email: 'admin@admin')
+u = User.new(destination_name: 'Admin', email: 'admin@admin')
 u.password = 'password'
 u.skip_confirmation!
 u.add_role :admin
@@ -7,7 +7,7 @@ u.save!
 puts 'Default admin user is created.'
 
 10.times do |i|
-  u = User.new(name: "User#{i}", email: "user#{i}@user", password: 'password')
+  u = User.new(destination_name: "User#{i}", email: "user#{i}@user", password: 'password')
   u.skip_confirmation!
   u.save!
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-u = User.new(name: 'Admin', email: 'admin@admin')
+u = User.new(destination_name: 'Admin', email: 'admin@admin')
 u.password = 'password'
 u.skip_confirmation!
 u.add_role :admin
