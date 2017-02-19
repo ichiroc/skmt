@@ -28,6 +28,8 @@ class OrderItem < ApplicationRecord
 
   after_initialize :set_cart_item_data!, if: -> { new_record? && cart_item }
 
+  delegate :image, to: :product
+
   def total
     product_price * quantity
   end
@@ -36,8 +38,8 @@ class OrderItem < ApplicationRecord
 
   def set_cart_item_data!
     self.product = cart_item.product
-    self.product_name = cart_item.product.name
-    self.product_price = cart_item.product.price
+    self.product_name = cart_item.name
+    self.product_price = cart_item.price
     self.quantity = cart_item.quantity
     self
   end

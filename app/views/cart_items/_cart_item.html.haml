@@ -1,11 +1,11 @@
 %tr
   %td
     .col-md-5
-      = product_image_tag(cart_item.product.image.thumb, width: '100%')
+      = product_image_tag(cart_item.image.thumb, width: '100%')
     .col-md-7
-      = link_to cart_item.product.name, product_path(cart_item.product)
+      = link_to cart_item.name, product_path(cart_item.product)
   %td
-    = number_to_currency(cart_item.product.price)
+    = number_to_currency(cart_item.price)
   %td
     = form_for cart_item do |f|
       .input-group
