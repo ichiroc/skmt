@@ -4,7 +4,7 @@
   .panel-body
     .col-md-8
       %h3= t('.order_details')
-      = render partial: 'order_detail', locals: { order: @order }
+      = render 'order_detail', order: @order
     .col-md-4
       .panel.panel-info
         .panel-heading= t('.total')

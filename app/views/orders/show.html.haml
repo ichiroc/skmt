@@ -5,7 +5,7 @@
     = link_to t('helpers.links.edit'), edit_order_path(@order), class: 'btn btn-default' if policy(@order).edit?
     .row
       .col-md-8
-        = render partial: 'order_detail', locals: { order: @order }
+        = render 'order_detail', order: @order
       .col-md-4
         .panel.panel-default
           .panel-body
