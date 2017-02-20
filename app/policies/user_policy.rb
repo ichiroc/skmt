@@ -9,8 +9,13 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def index?
+  def manage?
+    return false if @user.blank?
     @user.is_admin?
+  end
+
+  def index?
+    manage?
   end
 
   def show?

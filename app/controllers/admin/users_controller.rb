@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class Admin::UsersController < ApplicationController
-  include Pundit
   before_action :authenticate_user!
   before_action :not_permitted, unless: 'current_user.is_admin?'
   before_action :set_user, only: [:show, :edit, :update, :destroy]
