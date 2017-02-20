@@ -23,7 +23,7 @@ ja:
         name: 商品名
         description: 説明
         price: 価格
-        status: 非表示
+        status: ステータス
         sort_order: 表示順
         image: 画像
       cart_item:
@@ -50,3 +50,7 @@ ja:
         between_16_and_18: １６時から１８時
         between_18_and_20: １８時から２０時
         between_20_and_21: ２０時から２１時
+    product:
+      status:
+        active: 表示
+        hidden: 非表示

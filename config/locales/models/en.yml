@@ -22,3 +22,17 @@ en:
         image: Image
       cart_item:
         quantity: Quantity
+  enums:
+    order:
+      delivery_time_slot:
+        anytime: Anytime
+        between_8_and_12: "between 8 and 12 o'clock"
+        between_12_and_14: "between 12 and 14 o'clock"
+        between_14_and_16: "between 14 and 16 o'clock"
+        between_16_and_18: "between 16 and 18 o'clock"
+        between_18_and_20: "between 18 and 20 o'clock"
+        between_20_and_21: "between 20 and 21 o'clock"
+    product:
+      status:
+        active: Active
+        hidden: Hidden
