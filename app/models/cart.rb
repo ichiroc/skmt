@@ -70,6 +70,6 @@ class Cart < ApplicationRecord
   end
 
   def empty!
-    items.each(&:destroy)
+    items.destroy_all
   end
 end
