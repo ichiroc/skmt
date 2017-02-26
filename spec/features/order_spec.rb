@@ -17,7 +17,8 @@ feature '注文を確定する' do
             with: Faker::Address.full_address
     fill_in t('activerecord.attributes.order.destination_name'),
             with: Faker::Name.name
-    click_on t('orders.new.submit_order')
+    click_on t('orders.new.confirm_order')
+    click_on t('orders.confirmation.submit_order')
     expect(page).to have_content(t('orders.show.thank_you'))
   end
 
@@ -29,7 +30,8 @@ feature '注文を確定する' do
     sign_in @user
     add_to_cart @product
     proceed_to_checkout
-    click_on t('orders.new.submit_order')
+    click_on t('orders.new.confirm_order')
+    click_on t('orders.confirmation.submit_order')
     expect(page).to have_content(t('orders.show.thank_you'))
   end
 
@@ -49,10 +51,8 @@ feature '注文を確定する' do
     fill_in t('activerecord.attributes.order.destination_name'),
             with: name
     check t('activerecord.attributes.order.remember_destination')
-
-    click_on t('orders.new.submit_order')
-
-    expect(page).to have_content(t('orders.show.thank_you'))
+    click_on t('orders.new.confirm_order')
+    click_on t('orders.confirmation.submit_order')
     @user.reload
     expect(@user.destination_zip_code).to eq zip_code
     expect(@user.destination_address).to eq address
