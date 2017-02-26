@@ -20,6 +20,15 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def confirmation
+    @order = authorize current_user.orders.build(order_params.merge(cart: find_cart))
+    if @order.valid?
+      render
+    else
+      render :new
+    end
+  end
+
   def create
     @order = authorize current_user.orders.build(order_params.merge(cart: find_cart))
     respond_to do |format|

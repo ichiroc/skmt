@@ -43,7 +43,10 @@ en:
     new:
       total: Total
       destination: Destination
+      confirm_order: Confirm Order
+    confirmation:
       submit_order: Decide Order
+
   admin:
     products:
       index:

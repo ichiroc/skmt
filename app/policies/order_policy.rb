@@ -17,6 +17,10 @@ class OrderPolicy < ApplicationPolicy
     @user == @record.user
   end
 
+  def confirmation?
+    create?
+  end
+
   def show?
     create? || @user.is_admin?
   end

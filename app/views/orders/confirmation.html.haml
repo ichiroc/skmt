@@ -10,11 +10,6 @@
           .panel-body
             .row
               .col-md-5.text-right
-                %b= t('.order_date_time')
-              .col-md-7
-                %p= l @order.created_at
-            .row
-              .col-md-5.text-right
                 %b= t('.destination_name')
               .col-md-7
                 %p= @order.destination_name
@@ -40,3 +35,20 @@
                   %b= t('.delivery_time_slot')
                 .col-md-7
                   %p= @order.delivery_time_slot_i18n
+    .row
+      .col-md-12
+        = simple_form_for(@order) do |f|
+          = f.error_notification
+
+          .form-inputs
+            = f.input :total, as: :hidden
+            = f.input :tax_amount, as: :hidden
+            = f.input :delivery_fee, as: :hidden
+            = f.input :cache_on_delivery_fee, as: :hidden
+            = f.input :destination_name, as: :hidden
+            = f.input :destination_zip_code, as: :hidden
+            = f.input :destination_address, as: :hidden
+            = f.input :delivery_date, as: :hidden
+            = f.input :delivery_time_slot, as: :hidden
+          .form-actions
+            = f.submit t('.submit_order'), class: 'btn btn-primary'
