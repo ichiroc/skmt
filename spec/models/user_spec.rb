@@ -65,12 +65,28 @@ RSpec.describe User, type: :model do
         expect( @admin.destroyed? ).to be_falsy
         expect( @admin.errors[:base]).to include t('errors.messages.cant_delete_last_admin')
       end
+
+      it "role を削除できないこと" do
+        @admin.is_admin = false
+        expect(@admin).not_to be_valid
+        expect(@admin.errors[:is_admin?]).to include t('errors.messages.cant_delete_last_admin')
+      end
     end
+
     context '最後の管理者じゃない場合' do
+      before :each do
+        @another_admin = create :admin, email: 'admin2@admin'
+      end
+
       it '削除できること' do
-        another_admin = create :admin, email: 'admin2@admin'
-        expect(another_admin.is_admin?).to be_truthy
-        expect(another_admin.destroy).to be_truthy
+        expect(@another_admin.is_admin?).to be_truthy
+        expect(@another_admin.destroy).to be_truthy
+      end
+
+      it "role を削除できること" do
+        @another_admin.is_admin = false
+        expect(@another_admin).to be_valid
+        expect(@another_admin.errors[:is_admin?]).not_to include t('errors.messages.cant_delete_last_admin')
       end
     end
   end
