@@ -2,7 +2,11 @@
 Rails.application.routes.draw do
   root 'products#index'
 
-  resources :orders
+  resources :orders do
+    collection do
+      post :confirmation
+    end
+  end
   resources :cart_items, only: [:index, :create, :update, :destroy]
   resources :products, only: [:show, :index]
   namespace :admin do
