@@ -45,6 +45,7 @@ ja:
       destination: 送り先
       confirm_order: 注文を確認する
     confirmation:
+      order_confirmation: ご注文の確認
       submit_order: 注文を確定する
   admin:
     products:

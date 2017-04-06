@@ -45,6 +45,7 @@ en:
       destination: Destination
       confirm_order: Confirm Order
     confirmation:
+      order_confirmation: Order Confirmation
       submit_order: Decide Order
 
   admin:
