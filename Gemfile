@@ -34,6 +34,7 @@ gem 'turbolinks', '~> 5.0.1'
 gem 'twitter-bootstrap-rails', '~> 3.2.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '~> 3.0.4'
+gem 'figaro'
 
 group :production do
   gem 'pg', '~> 0.19.0'
