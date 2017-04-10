@@ -40,6 +40,8 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :roles, through: :users_roles
   validates_with ZipCodeFormatValidator
+  validate :dont_remove_last_admin_role
+
   before_validation :build_cart, if: -> { cart.blank? }
   before_destroy :dont_delete_last_admin
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
@@ -54,12 +56,22 @@ class User < ApplicationRecord
 
   private
 
+  def number_of_admins
+    User.joins(:users_roles)
+    .joins(:roles)
+    .where('roles.name = ?', 'admin')
+    .count
+  end
+
+  def dont_remove_last_admin_role
+    return if number_of_admins >= 1
+    return if self.is_admin?
+    return if self.new_record?
+    errors.add(:is_admin? , I18n.t('errors.messages.cant_delete_last_admin'))
+  end
+
   def dont_delete_last_admin
-    return unless is_admin?
-    number_of_admins = User.joins(:users_roles)
-                           .joins(:roles)
-                           .where('roles.name = ?', 'admin')
-                           .count
+    return unless self.is_admin?
     return if number_of_admins > 1
     errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
     throw :abort
