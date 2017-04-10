@@ -14,7 +14,8 @@ gem 'coffee-rails', '~> 4.2.1'
 gem 'devise', '~> 4.2.0'
 gem 'enum_help', '~> 0.0.17'
 gem 'faker', '~> 1.7.2'
-gem 'figaro', "~> 1.1.1"
+gem 'figaro', '~> 1.1.1'
+gem 'gretel', '~> 3.0.9'
 gem 'haml-rails', '~> 0.9.0'
 gem 'jbuilder', '~> 2.6.1'
 gem 'jquery-rails', '~> 4.2.2'
@@ -35,7 +36,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '~> 3.0.4'
 
 group :production do
-  gem 'pg', "~> 0.19.0"
+  gem 'pg', '~> 0.19.0'
 end
 
 group :development do
@@ -69,5 +70,5 @@ end
 
 # Limit to test environment to avoid effect for generators.
 group :test do
-  gem 'timecop', "~> 0.8.1"
+  gem 'timecop', '~> 0.8.1'
 end
