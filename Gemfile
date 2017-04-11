@@ -1,5 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -25,6 +26,7 @@ gem 'mini_magick', '~> 4.6.0'
 gem 'puma', '~> 3.6.2'
 gem 'pundit', github: 'elabs/pundit'
 gem 'rails', '~> 5.0.1'
+gem 'ransack', '~> 1.8.2'
 gem 'rolify', '~> 5.1.0'
 gem 'sass-rails', '~> 5.0.6'
 gem 'simple_form', '~> 3.4.0'
@@ -32,7 +34,7 @@ gem 'sprockets', '~> 3.6.3' # Use 3.6.x for avoid warnnings.
 gem 'therubyracer', '~> 0.12.3'
 gem 'turbolinks', '~> 5.0.1'
 gem 'twitter-bootstrap-rails', '~> 3.2.2'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '~> 3.0.4'
 
 group :production do
