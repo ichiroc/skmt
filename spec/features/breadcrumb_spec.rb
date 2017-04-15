@@ -9,7 +9,7 @@ feature 'パンくず' do
   end
 
   scenario '商品ページにパンくずが表示される' do
-    product = Product.create
+    product = create :product
     visit root_path
     click_on product.name
     expect(page).to have_link('Home')
