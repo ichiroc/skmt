@@ -10,7 +10,7 @@ end
 
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'business_time', '~> 0.7.6'
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave-aws', '~> 1.1.0'
 gem 'coffee-rails', '~> 4.2.1'
 gem 'devise', '~> 4.2.0'
 gem 'enum_help', '~> 0.0.17'
