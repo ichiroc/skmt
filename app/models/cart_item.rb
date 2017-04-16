@@ -16,8 +16,8 @@
 #
 
 class CartItem < ApplicationRecord
-  belongs_to :cart
-  belongs_to :product
+  belongs_to :cart, optional: false
+  belongs_to :product, optional: false
   validates :quantity, numericality: { greater_than: 0 }
 
   delegate :name, to: :product
