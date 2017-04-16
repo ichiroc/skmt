@@ -47,10 +47,11 @@ class User < ApplicationRecord
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def is_admin= flag
-    if flag == '1'
-      add_role :admin
-    else
+    if ( flag == '0' || !flag ) and is_admin?
       remove_role :admin
+      @admin_role_removed = true
+    else
+      add_role :admin
     end
   end
 
@@ -64,9 +65,8 @@ class User < ApplicationRecord
   end
 
   def dont_remove_last_admin_role
+    return unless @admin_role_removed
     return if number_of_admins >= 1
-    return if self.is_admin?
-    return if self.new_record?
     errors.add(:is_admin? , I18n.t('errors.messages.cant_delete_last_admin'))
   end
 
