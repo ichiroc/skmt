@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -46,8 +48,8 @@ class User < ApplicationRecord
   before_destroy :dont_delete_last_admin
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
-  def is_admin= flag
-    if ( flag == '0' || !flag ) and is_admin?
+  def is_admin=(flag)
+    if (flag == '0' || !flag) && is_admin?
       remove_role :admin
       @admin_role_removed = true
     else
@@ -59,19 +61,19 @@ class User < ApplicationRecord
 
   def number_of_admins
     User.joins(:users_roles)
-    .joins(:roles)
-    .where('roles.name = ?', 'admin')
-    .count
+        .joins(:roles)
+        .where('roles.name = ?', 'admin')
+        .count
   end
 
   def dont_remove_last_admin_role
     return unless @admin_role_removed
     return if number_of_admins >= 1
-    errors.add(:is_admin? , I18n.t('errors.messages.cant_delete_last_admin'))
+    errors.add(:is_admin?, I18n.t('errors.messages.cant_delete_last_admin'))
   end
 
   def dont_delete_last_admin
-    return unless self.is_admin?
+    return unless is_admin?
     return if number_of_admins > 1
     errors.add(:base, I18n.t('errors.messages.cant_delete_last_admin'))
     throw :abort
