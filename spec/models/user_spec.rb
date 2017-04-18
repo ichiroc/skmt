@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject(:user){ build :user }
+  subject(:admin){ build :admin }
   it { is_expected.to be_valid }
 
   it 'カートが自動的に生成されること' do
@@ -51,7 +52,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is_admin= "0" でadminロールを削除できること' do
-    user.is_admin = '0'
+    admin.is_admin = '0'
     expect(user.is_admin?).to be_falsy
   end
 

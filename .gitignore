@@ -124,3 +124,8 @@ flycheck_*.el
 public/uploads
 
 coverage
+# Ignore application configuration
+/config/application.yml
+
+# Ignore pessimize backup
+*.backup

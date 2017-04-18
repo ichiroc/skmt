@@ -1,5 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -9,11 +10,13 @@ end
 
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'business_time', '~> 0.7.6'
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave-aws', '~> 1.1.0'
 gem 'coffee-rails', '~> 4.2.1'
 gem 'devise', '~> 4.2.0'
 gem 'enum_help', '~> 0.0.17'
 gem 'faker', '~> 1.7.2'
+gem 'figaro', '~> 1.1.1'
+gem 'gretel', '~> 3.0.9'
 gem 'haml-rails', '~> 0.9.0'
 gem 'jbuilder', '~> 2.6.1'
 gem 'jquery-rails', '~> 4.2.2'
@@ -23,6 +26,7 @@ gem 'mini_magick', '~> 4.6.0'
 gem 'puma', '~> 3.6.2'
 gem 'pundit', github: 'elabs/pundit'
 gem 'rails', '~> 5.0.1'
+gem 'ransack', '~> 1.8.2'
 gem 'rolify', '~> 5.1.0'
 gem 'sass-rails', '~> 5.0.6'
 gem 'simple_form', '~> 3.4.0'
@@ -30,11 +34,11 @@ gem 'sprockets', '~> 3.6.3' # Use 3.6.x for avoid warnnings.
 gem 'therubyracer', '~> 0.12.3'
 gem 'turbolinks', '~> 5.0.1'
 gem 'twitter-bootstrap-rails', '~> 3.2.2'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '~> 3.0.4'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.19.0'
 end
 
 group :development do
@@ -68,5 +72,5 @@ end
 
 # Limit to test environment to avoid effect for generators.
 group :test do
-  gem 'timecop'
+  gem 'timecop', '~> 0.8.1'
 end
