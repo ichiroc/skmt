@@ -49,11 +49,11 @@ class User < ApplicationRecord
   before_validation :format_zip_code, unless: -> { destination_zip_code.blank? }
 
   def is_admin=(flag)
-    if (flag == '0' || !flag) && is_admin?
+    if (flag && flag != '0')
+      add_role :admin
+    elsif self.is_admin?
       remove_role :admin
       @admin_role_removed = true
-    else
-      add_role :admin
     end
   end
 
