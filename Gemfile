@@ -61,7 +61,7 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.7.3'
   gem 'launchy', '~> 2.4.3'
   gem 'letter_opener', '~> 1.4.1'
-  gem 'pry-byebug', '~> 3.4.2'
+  gem 'pry-byebug', '~> 3.4.3'
   gem 'pry-doc', '~> 0.10.0'
   gem 'rspec-rails', '~> 3.5.2'
   gem 'selenium-webdriver', '~> 3.0.5'
