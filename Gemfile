@@ -43,7 +43,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.8'
-  gem 'spring', '~> 2.0.1'
+  gem 'spring', '~> 2.1.0'
   gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'web-console', '~> 3.4.0'
 end
