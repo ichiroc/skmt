@@ -230,7 +230,7 @@ GEM
       pry (~> 0.9)
       yard (~> 0.9)
     public_suffix (2.0.5)
-    puma (3.6.2)
+    puma (3.12.6)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -399,7 +399,7 @@ DEPENDENCIES
   pg (~> 0.19.0)
   pry-byebug (~> 3.4.2)
   pry-doc (~> 0.10.0)
-  puma (~> 3.6.2)
+  puma (~> 3.12.6)
   pundit!
   rails (~> 5.0.1)
   ransack (~> 1.8.2)
