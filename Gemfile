@@ -51,7 +51,7 @@ end
 # Grouping development and test for emacs robe-mode completion.
 group :development, :test do
   gem 'annotate', '~> 2.7.1'
-  gem 'better_errors', '~> 2.1.1'
+  gem 'better_errors', '~> 2.8.0'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'byebug', '~> 9.0.6', platform: :mri
   gem 'capybara', '~> 2.12.0'
